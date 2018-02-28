@@ -15,8 +15,6 @@ import org.apache.log4j.Logger;
 
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.client.TO.ProdottoTO;
-import com.application.dal.dao.ProdottoDao;
-import com.application.mapper.Mapper;
 
 //http://localhost:8080/RESTfulExample/rest/application/insertEditCustomer
 @Path("/prodotti")
@@ -28,9 +26,7 @@ public class ProdottiRestService {
 	private static String PRODOTTO_INVESTIMENTO_DONNA_YOUNG = "Prodotto investimento donna young";
 	private static String PRODOTTO_INVESTIMENTO_SENIOR_OVER_70 = "Prodotto investimento senior over 70";
 
-	@Inject
-	private ProdottoDao prodottoDao;
-
+	
 
 	@Inject
 	private Logger log;

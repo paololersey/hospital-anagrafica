@@ -7,7 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
 import org.hibernate.Session;
 
-import com.application.dal.model.Customer;
+import com.application.dal.model.Cliente;
 import com.application.util.HibernateUtil;
 
 /** Data access object layer */
@@ -18,7 +18,7 @@ public class ClienteDaoImpl implements ClienteDao {
 	private Logger log;
 
 	@Override
-	public Customer save(Customer customer) throws Exception {
+	public Cliente save(Cliente customer) throws Exception {
 
 		try {
 
@@ -43,7 +43,7 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public Customer getAll(Customer customer) throws Exception {
+	public Cliente getAll(Cliente customer) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
