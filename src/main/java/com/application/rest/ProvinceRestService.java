@@ -10,16 +10,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.commons.logging.Log;
+import org.apache.log4j.Logger;
 
 //http://localhost:8080/bankingAcademy/rest/province/getProvinceList
 //http://localhost:8080/bankingAcademy/rest/province/getProvinceById/PD
 @Path("/province")
 public class ProvinceRestService {
 
-//	@Inject
-//	private Log log;
-
+	@Inject
+	private transient Logger log;
 	/** GET PROVINCE LIST */
 
 	@GET

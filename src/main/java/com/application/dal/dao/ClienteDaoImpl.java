@@ -1,8 +1,12 @@
 package com.application.dal.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
 import org.hibernate.Session;
@@ -17,11 +21,8 @@ import com.application.util.HibernateUtil;
 public class ClienteDaoImpl implements ClienteDao {
 
 	@Inject
-	private Logger log;
-	
-//	@Inject
-//	private Session session;
-	
+	private transient Logger log;
+
 	@Inject
 	private ClienteConverter clienteConverter;
 
@@ -31,34 +32,67 @@ public class ClienteDaoImpl implements ClienteDao {
 		ClienteBO returned = null;
 		try {
 
-			Session session = HibernateUtil.getSessionFactory().openSession();
-
-		     session.beginTransaction();
-			
 			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
 
-			session.save(cliente);
+			getCurrentSession().save(cliente);
 
 			returned = clienteConverter.convertEntityToBO(cliente);
-			
-			session.getTransaction().commit();
 
 		} catch (MappingException me) {
 			log.error(me);
 			throw new HibernateException("hibernate mapping exception", me);
 		} catch (Exception e) {
 			log.error(e);
-			throw new Exception("Exception during insert cliente", e);
+			throw new Exception("Exception during insert cliente ", e);
 		}
 
 		return returned;
 
 	}
 
+	/*
+	 * manual method to handle session: not to do if boundary transaction is on the
+	 * business layer
+	 */
+
 	@Override
-	public Cliente getAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public ClienteBO saveOpeningAndClosingSession(ClienteBO clienteBO) throws Exception {
+
+		ClienteBO returned = null;
+		try {
+
+			Session session = HibernateUtil.getSessionFactory().openSession();
+
+			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
+
+			session.beginTransaction();
+			session.save(cliente);
+			session.getTransaction().commit();
+
+			returned = clienteConverter.convertEntityToBO(cliente);
+
+		} catch (MappingException me) {
+			log.error(me);
+			throw new HibernateException("hibernate mapping exception", me);
+		} catch (Exception e) {
+			log.error(e);
+			throw new Exception("Exception during insert cliente ", e);
+		}
+
+		return returned;
+
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cliente> getAll() throws Exception {
+		return (List<Cliente>) getCurrentSession().createCriteria(Cliente.class).list();
+	}
+	
+
+	private Session getCurrentSession() {
+		return HibernateUtil.getCurrentSession();
+	}
+
 
 }

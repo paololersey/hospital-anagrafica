@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
+import org.apache.log4j.Logger;
 
 import com.application.business.ClienteProdottoBusiness;
 import com.application.business.BO.ClienteBO;
@@ -28,13 +29,13 @@ import com.application.converter.ClienteConverter;
 public class ClientiRestService {
 
 	@Inject
-	ClienteProdottoBusiness clienteProdottoBusiness;
+	private ClienteProdottoBusiness clienteProdottoBusiness;
 
 	@Inject
-	ClienteConverter clienteConverter;
+	private ClienteConverter clienteConverter;
 
-//	@Inject
-//	Log log;
+	@Inject
+	private transient Logger log;
 
 	private static String PRODOTTO_PIU_PREVIDENZA = "Prodotto piu' previdenza";
 
@@ -85,7 +86,7 @@ public class ClientiRestService {
 			clienteWithProdottoTOReturned = clienteConverter.convertBOtoTO(returnedClienteBO);
 
 		} catch (Exception e) {
-			//log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);
 			return Response.ok(clienteWithProdottoTO).status(500).build();
 		}
 

@@ -3,18 +3,25 @@
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
-  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-  <property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.1.158:1521:PULSE</property>
-  <property name="hibernate.connection.username">PULSE</property>
-  <property name="hibernate.connection.password">PULSE</property>
-  <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-  
-  <property name="hibernate.default_schema">PULSE</property>
-  <property name="show_sql">true</property>
-  
-  <!-- Mapping entities -->
-  <mapping class="com.application.dal.entity.Cliente"/>
-  
-</session-factory>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+		<!-- To be changed with actual database -->
+
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.1.158:1521:PULSE</property>
+		<property name="hibernate.connection.username">PULSE</property>
+		<property name="hibernate.connection.password">PULSE</property>
+		<property name="hibernate.default_schema">PULSE</property>
+
+		<!-- -->
+
+		<property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+
+		<property name="show_sql">true</property>
+
+		<!-- Mapping entities -->
+		<mapping class="com.application.dal.entity.Cliente" />
+
+	</session-factory>
 </hibernate-configuration>

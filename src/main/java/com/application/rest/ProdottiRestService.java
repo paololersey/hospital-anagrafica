@@ -2,7 +2,6 @@ package com.application.rest;
 
 import java.util.ArrayList;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,7 +17,6 @@ import com.application.client.TO.ProdottoTO;
 
 //http://localhost:8080/RESTfulExample/rest/application/insertEditCustomer
 @Path("/prodotti")
-@RequestScoped
 public class ProdottiRestService {
 
 	private static String PRODOTTO_PIU_PREVIDENZA = "Prodotto piu' previdenza";
@@ -29,7 +27,7 @@ public class ProdottiRestService {
 	
 
 	@Inject
-	private Logger log;
+	private transient Logger log;
 
 	/** GET PRODOTTI LIST */
 	@GET

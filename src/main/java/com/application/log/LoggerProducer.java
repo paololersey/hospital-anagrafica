@@ -1,5 +1,6 @@
 package com.application.log;
 
+
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
@@ -8,7 +9,6 @@ import org.apache.log4j.Logger;
 /** 
  * Logging producer for injectable log4j logger 
  * 
- * @author cem ikta 
  */  
 public class LoggerProducer {  
    /** 
