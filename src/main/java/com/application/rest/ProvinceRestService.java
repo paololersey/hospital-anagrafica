@@ -2,7 +2,6 @@ package com.application.rest;
 
 import java.util.ArrayList;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,23 +10,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.log4j.Logger;
-
-import com.application.mapper.Mapper;
+import org.apache.commons.logging.Log;
 
 //http://localhost:8080/bankingAcademy/rest/province/getProvinceList
 //http://localhost:8080/bankingAcademy/rest/province/getProvinceById/PD
 @Path("/province")
 public class ProvinceRestService {
 
-	@Inject
-	private Mapper mapper;
-
-	@Inject
-	private Logger log;
+//	@Inject
+//	private Log log;
 
 	/** GET PROVINCE LIST */
-	
+
 	@GET
 	@Path("/getProvinceList")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -47,9 +41,9 @@ public class ProvinceRestService {
 		return Response.ok(provinceList).status(200).build();
 
 	}
-	
+
 	/** GET PROVINCE BY ID */
-	
+
 	@GET
 	@Path("/getProvinceById/{code}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -59,7 +53,7 @@ public class ProvinceRestService {
 
 		// to be replaced by provinceBusinessLayer
 		provinceList.add("PD");
-		
+
 		return Response.ok(provinceList.get(0)).status(200).build();
 
 	}

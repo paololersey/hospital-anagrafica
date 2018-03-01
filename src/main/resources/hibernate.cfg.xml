@@ -5,12 +5,16 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-  <property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:BANK</property>
-  <property name="hibernate.connection.username">bank</property>
-  <property name="hibernate.connection.password">password</property>
+  <property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.1.158:1521:PULSE</property>
+  <property name="hibernate.connection.username">PULSE</property>
+  <property name="hibernate.connection.password">PULSE</property>
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
   
-  <property name="hibernate.default_schema">academy</property>
-  <property name="show_sql">false</property>
+  <property name="hibernate.default_schema">PULSE</property>
+  <property name="show_sql">true</property>
+  
+  <!-- Mapping entities -->
+  <mapping class="com.application.dal.entity.Cliente"/>
+  
 </session-factory>
 </hibernate-configuration>

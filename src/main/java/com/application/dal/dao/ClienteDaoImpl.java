@@ -7,7 +7,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
 import org.hibernate.Session;
 
-import com.application.dal.model.Cliente;
+import com.application.business.BO.ClienteBO;
+import com.application.converter.ClienteConverter;
+import com.application.dal.entity.Cliente;
 import com.application.util.HibernateUtil;
 
 /** Data access object layer */
@@ -16,18 +18,29 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@Inject
 	private Logger log;
+	
+//	@Inject
+//	private Session session;
+	
+	@Inject
+	private ClienteConverter clienteConverter;
 
 	@Override
-	public Cliente save(Cliente customer) throws Exception {
+	public ClienteBO save(ClienteBO clienteBO) throws Exception {
 
+		ClienteBO returned = null;
 		try {
 
 			Session session = HibernateUtil.getSessionFactory().openSession();
 
-			session.beginTransaction();
+		     session.beginTransaction();
+			
+			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
 
-			session.save(customer);
+			session.save(cliente);
 
+			returned = clienteConverter.convertEntityToBO(cliente);
+			
 			session.getTransaction().commit();
 
 		} catch (MappingException me) {
@@ -35,15 +48,15 @@ public class ClienteDaoImpl implements ClienteDao {
 			throw new HibernateException("hibernate mapping exception", me);
 		} catch (Exception e) {
 			log.error(e);
-			throw new Exception("Customer exception", e);
+			throw new Exception("Exception during insert cliente", e);
 		}
 
-		return customer;
+		return returned;
 
 	}
 
 	@Override
-	public Cliente getAll(Cliente customer) throws Exception {
+	public Cliente getAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
