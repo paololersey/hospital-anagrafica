@@ -22,6 +22,8 @@
 
 		<!-- Mapping entities -->
 		<mapping class="com.application.dal.entity.Cliente" />
-
+		<mapping class="com.application.dal.entity.Prodotto" />
+		<mapping class="com.application.dal.entity.Provincia" />
+		
 	</session-factory>
 </hibernate-configuration>

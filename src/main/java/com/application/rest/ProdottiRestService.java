@@ -1,6 +1,7 @@
 package com.application.rest;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -12,22 +13,35 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
+import com.application.business.ProdottoBusiness;
+import com.application.business.BO.ProdottoBO;
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.client.TO.ProdottoTO;
+import com.application.converter.ProdottoConverter;
 
 //http://localhost:8080/RESTfulExample/rest/application/insertEditCustomer
 @Path("/prodotti")
 public class ProdottiRestService {
 
-	private static String PRODOTTO_PIU_PREVIDENZA = "Prodotto piu' previdenza";
-	private static String PRODOTTO_PREVIDENZA_GIOVANE = "Prodotto previdenza giovani";
-	private static String PRODOTTO_INVESTIMENTO_DONNA_YOUNG = "Prodotto investimento donna young";
-	private static String PRODOTTO_INVESTIMENTO_SENIOR_OVER_70 = "Prodotto investimento senior over 70";
+	private static String STANDARD_DESC = "Conto corrente standard";
+	private static String GIOVAN_DESCI = "Conto corrente under-30";
+	private static String ROSA_DESC = "Conto corrente donne";
+	private static String MONTAGNA_DESC = "Conto riservato residenti Belluno";
+	private static String STANDARD_CODE = "STANDARD";
+	private static String GIOVANI_CODE = "GIOVANI";
+	private static String ROSA_CODE = "ROSA";
+	private static String MOUNTAGNA_CODE = "MONTAGNA";
 
 	
 
 	@Inject
 	private transient Logger log;
+	
+	@Inject
+	private ProdottoBusiness prodottoBusiness;
+
+	@Inject
+	private ProdottoConverter prodottoConverter;
 
 	/** GET PRODOTTI LIST */
 	@GET
@@ -36,17 +50,40 @@ public class ProdottiRestService {
 	public Response getProdottiList() {
 		ArrayList<ProdottoTO> prodottiList = new ArrayList<ProdottoTO>();
 
-		// to be replaced by prodottiBusinessLayer
+		
 		try {
-			ProdottoTO prodottoTO = new ProdottoTO();
-			prodottoTO.setDescrizione(PRODOTTO_PIU_PREVIDENZA);
+			
+			// to be replaced by prodottiBusinessLayer
+			/* no interaction with database */
+			
+			/*ProdottoTO prodottoTO = new ProdottoTO();
+			prodottoTO.setDescrizioneProdotto(STANDARD_DESC);
+			prodottoTO.setNomeProdotto(STANDARD_CODE);
 			prodottiList.add(prodottoTO);
-			prodottoTO.setDescrizione(PRODOTTO_PREVIDENZA_GIOVANE);
+			prodottoTO.setDescrizioneProdotto(GIOVANI_DESC);
+			prodottoTO.setNomeProdotto(GIOVANI_CODE);
 			prodottiList.add(prodottoTO);
-			prodottoTO.setDescrizione(PRODOTTO_INVESTIMENTO_DONNA_YOUNG);
+			prodottoTO.setDescrizioneProdotto(ROSA_DESC);
+			prodottoTO.setNomeProdotto(ROSA_CODE);
 			prodottiList.add(prodottoTO);
-			prodottoTO.setDescrizione(PRODOTTO_INVESTIMENTO_SENIOR_OVER_70);
-			prodottiList.add(prodottoTO);
+			prodottoTO.setDescrizioneProdotto(MONTAGNA_DESC);
+			prodottoTO.setNomeProdotto(MONTAGNA_CODE);
+			prodottiList.add(prodottoTO);*/
+			
+			/*  */
+			
+			List<ProdottoBO> returnedProdottoBOList;
+			try {
+				returnedProdottoBOList = prodottoBusiness.getProdotti();
+				for (ProdottoBO prodottoBO : returnedProdottoBOList) {
+					prodottiList.add(prodottoConverter.convertBOtoTO(prodottoBO));
+				}
+			} catch (Exception e) {
+				log.error(e.getMessage());
+				return Response.ok(prodottiList).status(500).build();
+			}
+			return Response.ok(prodottiList).status(200).build();
+			
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 		}
@@ -60,11 +97,17 @@ public class ProdottiRestService {
 	@Path("/getProdottoSuggestion")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProdottoSuggestion(ClienteWithProdottoTO clienteWithProdottoTO) {
-		ProdottoTO prodottoTO = new ProdottoTO();
+		
 
 		// to be replaced by prodottiBusinessLayer
-		prodottoTO.setDescrizione(PRODOTTO_INVESTIMENTO_DONNA_YOUNG);
+		/* no interaction with database */
+		/* ProdottoTO prodottoTO = new ProdottoTO();
+		 * prodottoTO.setDescrizione(ROSA); */
 
+		/* */
+		 
+		ProdottoBO prodottoBO = new ProdottoBO();
+		ProdottoTO prodottoTO = prodottoConverter.convertBOtoTO(prodottoBO);
 		return Response.ok(prodottoTO).status(200).build();
 
 	}
@@ -78,9 +121,12 @@ public class ProdottiRestService {
 		ProdottoTO prodottoTO = new ProdottoTO();
 
 		// to be replaced by prodottiBusinessLayer
-		prodottoTO.setDescrizione(PRODOTTO_PREVIDENZA_GIOVANE);
-		prodottoTO.setCodice("03D2");
-
+		/* no interaction with database */
+		/*prodottoTO.setDescrizioneProdotto(MONTAGNA);
+		prodottoTO.setNomeProdotto(STANDARD);
+		prodottoTO.setId(2);*/
+		
+		/* */
 		return Response.ok(prodottoTO).status(200).build();
 
 	}
