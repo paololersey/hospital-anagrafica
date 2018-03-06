@@ -1,6 +1,9 @@
 package com.application.business.BO;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class ClienteBO implements java.io.Serializable {
 
@@ -12,6 +15,10 @@ public class ClienteBO implements java.io.Serializable {
 	private String codiceFiscale;
 	private String sesso;
 	private Date dataNascita;
+	private String codiceProvincia;
+	private String nomeProdotto;
+	private ProvinciaBO provinciaBO;
+	private Set<ContoBO> contoBOList = new HashSet<>();
 
 	public ClienteBO() {
 	}
@@ -62,6 +69,38 @@ public class ClienteBO implements java.io.Serializable {
 
 	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
+	}
+
+	public String getNomeProdotto() {
+		return nomeProdotto;
+	}
+
+	public void setNomeProdotto(String nomeProdotto) {
+		this.nomeProdotto = nomeProdotto;
+	}
+
+	public String getCodiceProvincia() {
+		return codiceProvincia;
+	}
+
+	public void setCodiceProvincia(String codiceProvincia) {
+		this.codiceProvincia = codiceProvincia;
+	}
+
+	public ProvinciaBO getProvinciaBO() {
+		return provinciaBO;
+	}
+
+	public void setProvinciaBO(ProvinciaBO provinciaBO) {
+		this.provinciaBO = provinciaBO;
+	}
+	
+	public Set<ContoBO> getContoBOList() {
+		return contoBOList;
+	}
+
+	public void setContoBOList(Set<ContoBO> contoBOList) {
+		this.contoBOList = contoBOList;
 	}
 
 }

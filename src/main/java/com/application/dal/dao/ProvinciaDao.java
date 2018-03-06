@@ -9,5 +9,5 @@ public interface ProvinciaDao {
 
 	public List<ProvinciaBO> getAll() throws Exception;
 
-
+	public ProvinciaBO getByCodice(String codice) throws Exception;
 }

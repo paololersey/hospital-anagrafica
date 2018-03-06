@@ -6,28 +6,39 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 
 	private static final long serialVersionUID = 8539824932895066025L;
 
+	private Long id;
 	private String nome;
 	private String cognome;
 	private Date dataNascita;
 	private String sesso;
-	private String provincia;
+	private String codiceProvincia;
 	private String codiceFiscale;
-	private String descProdotto;
+	private String nomeProdotto;
 
 	public ClienteWithProdottoTO() {
 
 	};
 
-	public ClienteWithProdottoTO(String nome, String cognome, Date dataNascita, String sesso, String provincia,
-			String codiceFiscale, String descProdotto) {
+	public ClienteWithProdottoTO(Long id, String nome, String cognome, Date dataNascita, String sesso, String codiceProvincia,
+			String codiceFiscale, String nomeProdotto) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataNascita = dataNascita;
 		this.sesso = sesso;
-		this.provincia = provincia;
+		this.codiceProvincia = codiceProvincia;
 		this.codiceFiscale = codiceFiscale;
-		this.descProdotto = descProdotto;
+		this.nomeProdotto = nomeProdotto;
+	}
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getSesso() {
@@ -38,20 +49,20 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 		this.sesso = sesso;
 	}
 
-	public String getProvincia() {
-		return provincia;
+	public String getCodiceProvincia() {
+		return codiceProvincia;
 	}
 
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+	public void setCodiceProvincia(String codiceProvincia) {
+		this.codiceProvincia = codiceProvincia;
 	}
 
-	public String getDescProdotto() {
-		return descProdotto;
+	public String getNomeProdotto() {
+		return nomeProdotto;
 	}
 
-	public void setDescProdotto(String descProdotto) {
-		this.descProdotto = descProdotto;
+	public void setNomeProdotto(String nomeProdotto) {
+		this.nomeProdotto = nomeProdotto;
 	}
 
 	public String getNome() {
@@ -86,24 +97,11 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 		this.codiceFiscale = codiceFiscale;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "ClienteWithProdottoTO [nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita
-				+ ", sesso=" + sesso + ", provincia=" + provincia + ", descProdotto=" + descProdotto + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
-		result = prime * result + ((dataNascita == null) ? 0 : dataNascita.hashCode());
-		result = prime * result + ((descProdotto == null) ? 0 : descProdotto.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((provincia == null) ? 0 : provincia.hashCode());
-		result = prime * result + ((sesso == null) ? 0 : sesso.hashCode());
-		return result;
+		return "ClienteWithProdottoTO [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", dataNascita="
+				+ dataNascita + ", sesso=" + sesso + ", codiceProvincia=" + codiceProvincia + ", codiceFiscale="
+				+ codiceFiscale + ", nomeProdotto=" + nomeProdotto + "]";
 	}
 
 	@Override
@@ -115,6 +113,16 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ClienteWithProdottoTO other = (ClienteWithProdottoTO) obj;
+		if (codiceFiscale == null) {
+			if (other.codiceFiscale != null)
+				return false;
+		} else if (!codiceFiscale.equals(other.codiceFiscale))
+			return false;
+		if (codiceProvincia == null) {
+			if (other.codiceProvincia != null)
+				return false;
+		} else if (!codiceProvincia.equals(other.codiceProvincia))
+			return false;
 		if (cognome == null) {
 			if (other.cognome != null)
 				return false;
@@ -125,20 +133,20 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 				return false;
 		} else if (!dataNascita.equals(other.dataNascita))
 			return false;
-		if (descProdotto == null) {
-			if (other.descProdotto != null)
+		if (nomeProdotto == null) {
+			if (other.nomeProdotto != null)
 				return false;
-		} else if (!descProdotto.equals(other.descProdotto))
+		} else if (!nomeProdotto.equals(other.nomeProdotto))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
-			return false;
-		if (provincia == null) {
-			if (other.provincia != null)
-				return false;
-		} else if (!provincia.equals(other.provincia))
 			return false;
 		if (sesso == null) {
 			if (other.sesso != null)
@@ -147,5 +155,9 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 			return false;
 		return true;
 	}
+
+	
+	
+
 
 }

@@ -10,16 +10,21 @@ import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.application.business.BO.ProdottoBO;
+import com.application.business.BO.ProvinciaBO;
 import com.application.converter.ProdottoConverter;
 import com.application.dal.entity.Prodotto;
+import com.application.dal.entity.Provincia;
 import com.application.util.HibernateUtil;
 
 /** Data access object layer */
 
 public class ProdottoDaoImpl implements ProdottoDao {
 
+	private static String className = ProdottoDaoImpl.class.getName();
+	
 	@Inject
 	private transient Logger log;
 
@@ -59,6 +64,24 @@ public class ProdottoDaoImpl implements ProdottoDao {
 
 	private Session getCurrentSession() {
 		return HibernateUtil.getCurrentSession();
+	}
+
+
+	@Override
+	public ProdottoBO getByNomeProdotto(String nomeProdotto) throws Exception {
+	
+		ProdottoBO prodottoBO = null;
+
+			try {
+				Prodotto prodotto = (Prodotto) getCurrentSession().createCriteria(Prodotto.class)
+						.add(Restrictions.eq("nomeProdotto", nomeProdotto)).uniqueResult();
+				prodottoBO = prodottoConverter.convertEntityToBO(prodotto);
+			} catch (Exception e) {
+				log.error(e.getMessage(), e);
+				throw new Exception("Error in class " + className + ", method getByNomeProdotto, exception" + e);
+			}
+
+			return prodottoBO;		
 	}
 
 

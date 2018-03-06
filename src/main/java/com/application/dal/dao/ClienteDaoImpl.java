@@ -20,12 +20,39 @@ import com.application.util.HibernateUtil;
 
 public class ClienteDaoImpl implements ClienteDao {
 
+
+	private static String className = ClienteDaoImpl.class.getName();
+	
 	@Inject
 	private transient Logger log;
 
 	@Inject
 	private ClienteConverter clienteConverter;
 
+	@Override
+	public ClienteBO merge(ClienteBO clienteBO) throws Exception {
+
+		ClienteBO returned = null;
+		try {
+
+			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
+
+			getCurrentSession().merge(cliente);
+
+			returned = clienteConverter.convertEntityToBO(cliente);
+
+		} catch (MappingException me) {
+			log.error(me);
+			throw new HibernateException("hibernate mapping exception", me);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new Exception("Error in class " + className + ", method merge, exception = " + e.getMessage());
+		}
+
+		return returned;
+
+	}
+	
 	@Override
 	public ClienteBO save(ClienteBO clienteBO) throws Exception {
 
@@ -42,8 +69,8 @@ public class ClienteDaoImpl implements ClienteDao {
 			log.error(me);
 			throw new HibernateException("hibernate mapping exception", me);
 		} catch (Exception e) {
-			log.error(e);
-			throw new Exception("Exception during insert cliente ", e);
+			log.error(e.getMessage(), e);
+			throw new Exception("Error in class " + className + ", method save, exception = " + e.getMessage());
 		}
 
 		return returned;

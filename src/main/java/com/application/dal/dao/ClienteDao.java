@@ -13,5 +13,7 @@ public interface ClienteDao {
 
 	public ClienteBO saveOpeningAndClosingSession(ClienteBO clienteBO) throws Exception;
 
+	public ClienteBO merge(ClienteBO clienteBO) throws Exception;
+
 
 }

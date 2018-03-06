@@ -61,8 +61,8 @@ public class ClientiRestService {
 		clienteWithProdottoTO.setCodiceFiscale("CODICE_FISCALE_1");
 		clienteWithProdottoTO.setNome("NAME");
 		clienteWithProdottoTO.setSesso("M");
-		clienteWithProdottoTO.setProvincia("PD");
-		clienteWithProdottoTO.setDescProdotto(PRODOTTO_PIU_PREVIDENZA);
+		/*clienteWithProdottoTO.setProvincia("PD");
+		clienteWithProdottoTO.setDescProdotto(PRODOTTO_PIU_PREVIDENZA);*/
 
 		clientiWithProdottoList.add(clienteWithProdottoTO);
 

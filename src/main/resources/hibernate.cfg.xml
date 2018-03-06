@@ -17,13 +17,16 @@
 		<!-- -->
 
 		<property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
-
 		<property name="show_sql">true</property>
 
 		<!-- Mapping entities -->
+		
 		<mapping class="com.application.dal.entity.Cliente" />
 		<mapping class="com.application.dal.entity.Prodotto" />
 		<mapping class="com.application.dal.entity.Provincia" />
+		<mapping class="com.application.dal.entity.Conto" />
+		
+		<!-- -->
 		
 	</session-factory>
 </hibernate-configuration>

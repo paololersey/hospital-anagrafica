@@ -1,12 +1,19 @@
 package com.application.dal.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,7 +31,8 @@ public class Cliente implements java.io.Serializable {
 	private String codiceFiscale;
 	private String sesso;
 	private Date dataNascita;
-	private Long idProvincia;
+	private Provincia provincia;
+	private List<Conto> contiList = new ArrayList<>();
 
 	public Cliente() {
 	}
@@ -87,13 +95,25 @@ public class Cliente implements java.io.Serializable {
 		this.dataNascita = dataNascita;
 	}
 
-	@Column(name = "ID_PROVINCIA")
-	public Long getIdProvincia() {
-		return idProvincia;
+	@ManyToOne
+	@JoinColumn(name = "ID_PROVINCIA")
+	public Provincia getProvincia() {
+		return provincia;
 	}
 
-	public void setIdProvincia(Long idProvincia) {
-		this.idProvincia = idProvincia;
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+
+//	@OneToMany
+//	@JoinColumn(name = "ID_CLIENTE", referencedColumnName="ID_CLIENTE")
+	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	public List<Conto> getContiList() {
+		return contiList;
+	}
+
+	public void setContiList(List<Conto> contiList) {
+		this.contiList = contiList;
 	}
 
 }

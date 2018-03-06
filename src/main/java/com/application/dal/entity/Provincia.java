@@ -1,10 +1,15 @@
 package com.application.dal.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,8 +22,17 @@ public class Provincia implements java.io.Serializable {
 	private Long id;
 	private String codice;
 	private String descrizione;
-
+    private Set<Cliente> clientList = new HashSet<>();
+	
 	public Provincia() {
+	}
+
+	public Provincia(Long id, String codice, String descrizione, Set<Cliente> clientList) {
+		super();
+		this.id = id;
+		this.codice = codice;
+		this.descrizione = descrizione;
+		this.setClientList(clientList);
 	}
 
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "gen_provincia")
@@ -49,6 +63,15 @@ public class Provincia implements java.io.Serializable {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	@OneToMany(mappedBy = "provincia", cascade = CascadeType.ALL, orphanRemoval = true)
+	public Set<Cliente> getClientList() {
+		return clientList;
+	}
+
+	public void setClientList(Set<Cliente> clientList) {
+		this.clientList = clientList;
 	}
 
 }

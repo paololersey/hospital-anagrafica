@@ -8,5 +8,7 @@ public interface ProdottoDao {
 
 	public List<ProdottoBO> getAll() throws Exception;
 
+	public ProdottoBO getByNomeProdotto(String nomeProdotto) throws Exception;
+
 
 }

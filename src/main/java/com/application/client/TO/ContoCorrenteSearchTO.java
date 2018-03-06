@@ -1,7 +1,5 @@
 package com.application.client.TO;
 
-import java.util.Date;
-
 public class ContoCorrenteSearchTO implements java.io.Serializable {
 
 	private static final long serialVersionUID = 8539824932895066025L;
