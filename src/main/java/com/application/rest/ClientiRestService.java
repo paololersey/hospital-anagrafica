@@ -104,8 +104,9 @@ public class ClientiRestService {
 	public Response deleteCliente(@PathParam("id") Long id) {
 
 		// invoke clienteProdottoBusinessLayer to delete cliente
-
-		return Response.ok(id).status(200).build();
+		Long idReturned= clienteProdottoBusiness.deleteCliente(id);
+		
+		return Response.ok(idReturned).status(200).build();
 
 	}
 

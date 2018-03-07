@@ -18,5 +18,10 @@ public interface ClienteDao {
 
 	public List<ClienteBO> getClienti(ClienteWithProdottoSearch clienteWithProdottoSearch) throws Exception;
 
+	public Long delete(ClienteBO clienteBO) throws Exception;
+
+	public ClienteBO getClienteById(Long id) throws Exception;
+
+
 
 }

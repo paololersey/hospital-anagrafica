@@ -11,7 +11,7 @@ public class ClienteWithProdottoSearch implements java.io.Serializable {
 	private Date dataNascita;
 	private String codiceFiscale;
 	private String sesso;
-	private String provincia;
+	private String codiceProvincia;
 	private String descProdotto;
 	private String numContoCorrente;
 
@@ -20,14 +20,14 @@ public class ClienteWithProdottoSearch implements java.io.Serializable {
 	}
 
 	public ClienteWithProdottoSearch(String nome, String cognome, Date dataNascita, String codiceFiscale,
-			String sesso, String provincia, String descProdotto, String numContoCorrente) {
+			String sesso, String codiceProvincia, String descProdotto, String numContoCorrente) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataNascita = dataNascita;
 		this.codiceFiscale = codiceFiscale;
 		this.sesso = sesso;
-		this.provincia = provincia;
+		this.codiceProvincia = codiceProvincia;
 		this.descProdotto = descProdotto;
 		this.numContoCorrente = numContoCorrente;
 	}
@@ -40,12 +40,12 @@ public class ClienteWithProdottoSearch implements java.io.Serializable {
 		this.sesso = sesso;
 	}
 
-	public String getProvincia() {
-		return provincia;
+	public String getCodiceProvincia() {
+		return codiceProvincia;
 	}
 
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+	public void setCodiceProvincia(String codiceProvincia) {
+		this.codiceProvincia = codiceProvincia;
 	}
 
 	public String getDescProdotto() {
@@ -100,7 +100,7 @@ public class ClienteWithProdottoSearch implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "ClienteWithProdottoTO [nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita
-				+ ", sesso=" + sesso + ", provincia=" + provincia + ", descProdotto=" + descProdotto + "]";
+				+ ", sesso=" + sesso + ", codiceProvincia=" + codiceProvincia + ", descProdotto=" + descProdotto + "]";
 	}
 
 }

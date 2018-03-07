@@ -7,8 +7,10 @@ import com.application.client.TO.ClienteWithProdottoSearch;
 
 public interface ClienteProdottoBusiness {
 
-	ClienteBO saveCliente(ClienteBO clienteBO) throws Exception;
+	public ClienteBO saveCliente(ClienteBO clienteBO) throws Exception;
 
-	List<ClienteBO> getClientiWithProdotto(ClienteWithProdottoSearch clienteWithProdottoSearch);
+	public List<ClienteBO> getClientiWithProdotto(ClienteWithProdottoSearch clienteWithProdottoSearch);
+
+	public Long deleteCliente(Long id);
 
 }

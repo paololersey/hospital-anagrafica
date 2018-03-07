@@ -18,6 +18,7 @@ import com.application.business.BO.ContoBO;
 import com.application.business.BO.ProdottoBO;
 import com.application.business.BO.ProvinciaBO;
 import com.application.client.TO.ClienteWithProdottoSearch;
+import com.application.converter.ClienteConverter;
 import com.application.dal.dao.ClienteDao;
 import com.application.dal.dao.ContoDao;
 import com.application.dal.dao.ProdottoDao;
@@ -108,6 +109,18 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 			throw new WebApplicationException(e);
 		}
 		return clientiWithProdottList;
+	}
+
+	@Override
+	public Long deleteCliente(Long id) {
+		try {
+			ClienteBO clienteBOReturned = clienteDao.getClienteById(id);
+			id = clienteDao.delete(clienteBOReturned);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new WebApplicationException(e);
+		}
+		return id;
 	}
 
 }
