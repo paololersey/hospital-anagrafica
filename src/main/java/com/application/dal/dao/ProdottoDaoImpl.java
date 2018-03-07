@@ -82,6 +82,22 @@ public class ProdottoDaoImpl implements ProdottoDao {
 
 			return prodottoBO;		
 	}
+
+
+	@Override
+	public ProdottoBO getProdottoById(Long id) throws Exception {
+		ProdottoBO prodottoBO = null;
+
+		try {
+			Prodotto prodotto = (Prodotto) getCurrentSession().get(Prodotto.class, id);			
+			prodottoBO = prodottoConverter.convertEntityToBO(prodotto);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new Exception("Error in class " + className + ", method getByNomeProdotto, exception" + e);
+		}
+
+		return prodottoBO;		
+	}
 	
 
 

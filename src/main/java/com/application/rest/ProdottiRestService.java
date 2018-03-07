@@ -24,7 +24,7 @@ import com.application.converter.ProdottoConverter;
 public class ProdottiRestService {
 
 	private static String STANDARD_DESC = "Conto corrente standard";
-	private static String GIOVAN_DESCI = "Conto corrente under-30";
+	private static String GIOVANI_DESC = "Conto corrente under-30";
 	private static String ROSA_DESC = "Conto corrente donne";
 	private static String MONTAGNA_DESC = "Conto riservato residenti Belluno";
 	private static String STANDARD_CODE = "STANDARD";
@@ -105,6 +105,7 @@ public class ProdottiRestService {
 		 * prodottoTO.setDescrizione(ROSA); */
 
 		/* */
+		
 		 
 		ProdottoBO prodottoBO = new ProdottoBO();
 		ProdottoTO prodottoTO = prodottoConverter.convertBOtoTO(prodottoBO);
@@ -118,7 +119,7 @@ public class ProdottiRestService {
 	@Path("/getProdottoDetail/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProdottoSuggestion(@PathParam("id") Long id) {
-		ProdottoTO prodottoTO = new ProdottoTO();
+
 
 		// to be replaced by prodottiBusinessLayer
 		/* no interaction with database */
@@ -127,6 +128,10 @@ public class ProdottiRestService {
 		prodottoTO.setId(2);*/
 		
 		/* */
+		
+		ProdottoBO prodottoBOReturned = prodottoBusiness.getProdottoById(id);
+		ProdottoTO prodottoTO = prodottoConverter.convertBOtoTO(prodottoBOReturned);
+		
 		return Response.ok(prodottoTO).status(200).build();
 
 	}

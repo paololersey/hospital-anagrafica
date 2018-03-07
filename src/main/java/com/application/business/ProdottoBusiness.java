@@ -6,6 +6,8 @@ import com.application.business.BO.ProdottoBO;
 
 public interface ProdottoBusiness {
 
-	List<ProdottoBO> getProdotti() throws Exception;
+	public List<ProdottoBO> getProdotti() throws Exception;
+
+	public ProdottoBO getProdottoById(Long id);
 
 }

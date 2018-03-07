@@ -41,4 +41,16 @@ public class ProdottoBusinessImpl implements ProdottoBusiness {
 		return returnedProdottoBOList;
 
 	}
+
+	@Override
+	public ProdottoBO getProdottoById(Long id) {
+		ProdottoBO returnedProdottoBO = null;
+		try {
+			returnedProdottoBO = prodottoDao.getProdottoById(id);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new WebApplicationException();
+		}
+		return returnedProdottoBO;
+	}
 }

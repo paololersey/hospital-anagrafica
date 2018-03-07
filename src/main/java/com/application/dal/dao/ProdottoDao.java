@@ -11,7 +11,7 @@ public interface ProdottoDao {
 
 	public ProdottoBO getByNomeProdotto(String nomeProdotto) throws Exception;
 
-	//public ContoBO getContoByIdClienteAndProdotto(Long idCliente, String nomeProdotto) throws Exception;
+	public ProdottoBO getProdottoById(Long id) throws Exception;
 
 
 }
