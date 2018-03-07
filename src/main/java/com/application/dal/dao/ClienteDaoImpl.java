@@ -69,7 +69,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
 		} catch (MappingException me) {
 			log.error(me);
-			throw new HibernateException("hibernate mapping exception", me);
+			throw new HibernateException("Hibernate mapping Exception in class " + className + ", method save, exception = " + me.getMessage());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new Exception("Error in class " + className + ", method save, exception = " + e.getMessage());
@@ -102,10 +102,10 @@ public class ClienteDaoImpl implements ClienteDao {
 
 		} catch (MappingException me) {
 			log.error(me);
-			throw new HibernateException("hibernate mapping exception", me);
+			throw new HibernateException("Hibernate mapping Exception in class " + className + ", method saveOpeningAndClosingSession, exception = " + me.getMessage());
 		} catch (Exception e) {
 			log.error(e);
-			throw new Exception("Exception during insert cliente ", e);
+			throw new Exception("Error in class " + className + ", method saveOpeningAndClosingSession, exception = " + e.getMessage());
 		}
 
 		return returned;
@@ -130,8 +130,8 @@ public class ClienteDaoImpl implements ClienteDao {
 		
 		try {
 			Criteria criteria = getCurrentSession().createCriteria(Cliente.class);
-			//criteria.createAlias("contiList","conto");
-			//criteria.add(Restrictions.ne("conto.dataApertura", null));
+			criteria.createAlias("contiList","conto");
+			criteria.add(Restrictions.isNotNull("conto.dataApertura"));
 			
 			List<Cliente> clientList = (List<Cliente>) criteria.list();                                                                     	
 			List<ClienteBO> clienteBOList  = new ArrayList<ClienteBO>();
@@ -140,14 +140,15 @@ public class ClienteDaoImpl implements ClienteDao {
 				clienteBOList.add(clienteConverter.convertEntityToBO(cliente));
 			}
 			
+			return clienteBOList;
+			
 		} catch (HibernateException e) {
 			log.error(e.getMessage(),e);
-			throw new HibernateException(e);
+			throw new HibernateException("Error in class " + className + ", method getClienti, exception = " + e.getMessage());
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
-			throw new Exception(e); // TO fix message
+			throw new Exception("Error in class " + className + ", method getClienti, exception = " + e.getMessage());
 		}
-		return null;
 	}
 
 

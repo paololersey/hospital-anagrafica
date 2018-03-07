@@ -1,5 +1,7 @@
 package com.application.converter;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -7,6 +9,8 @@ import org.apache.log4j.Logger;
 import com.application.business.BO.ClienteBO;
 import com.application.business.BO.ContoBO;
 import com.application.client.TO.ClienteWithProdottoTO;
+import com.application.client.TO.ProdottoTO;
+import com.application.client.TO.ProvinciaTO;
 import com.application.dal.entity.Cliente;
 import com.application.dal.entity.Conto;
 
@@ -16,6 +20,9 @@ public class ClienteConverter {
 
 	@Inject
 	private ProvinciaConverter provinciaConverter;
+
+	@Inject
+	private ProdottoConverter prodottoConverter;
 
 	@Inject
 	private ContoConverter contoConverter;
@@ -71,8 +78,11 @@ public class ClienteConverter {
 
 	/** From REST layer TO BUSINESS layer and viceversa */
 
+	/** usato al ritorno della ricerca principale */
+	
 	public ClienteWithProdottoTO convertBOtoTO(ClienteBO clienteBO) {
 		ClienteWithProdottoTO clienteTO = new ClienteWithProdottoTO();
+		clienteTO.setId(clienteBO.getId());
 		clienteTO.setDataNascita(clienteBO.getDataNascita());
 		clienteTO.setCodiceFiscale(clienteBO.getCodiceFiscale());
 		clienteTO.setNome(clienteBO.getNome());
@@ -81,8 +91,21 @@ public class ClienteConverter {
 		clienteTO.setNomeProdotto(clienteBO.getNomeProdotto());
 		clienteTO.setCodiceProvincia(clienteBO.getCodiceProvincia());
 
+		if (clienteBO.getProvinciaBO() != null) {
+			ProvinciaTO provinciaTO = provinciaConverter.convertBOtoTO(clienteBO.getProvinciaBO());
+			clienteTO.setCodiceProvincia(provinciaTO.getCodice());
+		}
+
+		if (clienteBO.getContoBOList() != null && clienteBO.getContoBOList().size() == 1) {
+			ContoBO contoBO = new ArrayList<>(clienteBO.getContoBOList()).get(0);
+			ProdottoTO prodottoTO = prodottoConverter.convertBOtoTO(contoBO.getProdottoBO());
+			clienteTO.setNomeProdotto(prodottoTO.getNomeProdotto());
+		}
+
 		return clienteTO;
 	}
+	
+	
 
 	public ClienteBO convertTOtoBO(ClienteWithProdottoTO clienteWithProdottoTO) {
 

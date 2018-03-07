@@ -12,11 +12,10 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import com.application.business.BO.ContoBO;
 import com.application.business.BO.ProdottoBO;
-import com.application.business.BO.ProvinciaBO;
 import com.application.converter.ProdottoConverter;
 import com.application.dal.entity.Prodotto;
-import com.application.dal.entity.Provincia;
 import com.application.util.HibernateUtil;
 
 /** Data access object layer */
@@ -83,6 +82,7 @@ public class ProdottoDaoImpl implements ProdottoDao {
 
 			return prodottoBO;		
 	}
+	
 
 
 }

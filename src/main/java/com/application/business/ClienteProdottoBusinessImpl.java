@@ -19,6 +19,7 @@ import com.application.business.BO.ProdottoBO;
 import com.application.business.BO.ProvinciaBO;
 import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.dal.dao.ClienteDao;
+import com.application.dal.dao.ContoDao;
 import com.application.dal.dao.ProdottoDao;
 import com.application.dal.dao.ProvinciaDao;
 
@@ -51,6 +52,9 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 	@Inject
 	private ClienteDao clienteDao;
 
+	@Inject
+	private ContoDao contoDao;
+
 	@Override
 	public ClienteBO saveCliente(ClienteBO clienteBO) throws Exception {
 		ClienteBO returnedClienteBO = null;
@@ -59,27 +63,27 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 
 			ProvinciaBO provinciaBO = provinciaDao.getByCodice(clienteBO.getCodiceProvincia());
 			clienteBO.setProvinciaBO(provinciaBO);
-			
-			
-			
+			ProdottoBO prodottoBO = prodottoDao.getByNomeProdotto(clienteBO.getNomeProdotto());
+
 			if (clienteBO.getId() == null) {
+
 				Set<ContoBO> contoBOList = new HashSet<>();
 				ContoBO contoBO = new ContoBO();
-				
+
+				contoBO.setProdottoBO(prodottoBO);
 				contoBO.setDataApertura(new Date());
 				contoBO.setNumeroContoCorrente(CONTO_PREFIX + "2");
 				contoBOList.add(contoBO);
 
 				clienteBO.addContoBO(contoBO);
-
 				returnedClienteBO = clienteDao.save(clienteBO);
-				
+
 			} else {
-				if (clienteBO.getContoBOList() != null && clienteBO.getContoBOList().size() > 0) {
-					for(ContoBO contoBO: clienteBO.getContoBOList()) {
-						
-					}
-				}
+				
+				ContoBO contoBO = contoDao.getContoByIdCliente(clienteBO.getId());
+				contoBO.setProdottoBO(prodottoBO);
+				clienteBO.addContoBO(contoBO);
+				
 				returnedClienteBO = clienteDao.merge(clienteBO);
 			}
 

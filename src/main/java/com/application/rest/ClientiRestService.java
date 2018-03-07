@@ -41,7 +41,7 @@ public class ClientiRestService {
 	@POST
 	@Path("/getClientiWithProdotto")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAnagraficaWithProdotto(ClienteWithProdottoSearch clienteWithProdottoSearch) {
+	public Response getClientiWithProdotto(ClienteWithProdottoSearch clienteWithProdottoSearch) {
 
 		// replaced by clienteWithProdottoBusinessLayer through
 		// clienteWithProdottoSearchTO
