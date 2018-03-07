@@ -15,7 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.application.client.TO.ClienteWithProdottoSearchTO;
+import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.client.TO.ContoCorrenteSearchTO;
 import com.application.client.TO.ContoCorrenteTO;

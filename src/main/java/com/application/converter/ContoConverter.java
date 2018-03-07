@@ -21,9 +21,6 @@ public class ContoConverter {
 		contoBO.setDataApertura(conto.getDataApertura());
 		contoBO.setNumeroContoCorrente(conto.getNumeroContoCorrente());
 		contoBO.setProdottoBO(prodottoConverter.convertEntityToBO(conto.getProdotto()));
-		ClienteBO clienteBO = new ClienteBO();
-//		clienteBO.setId(conto.getCliente().getId());
-		contoBO.setClienteBO(clienteBO);	
 		return contoBO;
 	}
 
@@ -33,10 +30,7 @@ public class ContoConverter {
 		conto.setDataApertura(contoBO.getDataApertura());
 		conto.setNumeroContoCorrente(contoBO.getNumeroContoCorrente());
 		conto.setProdotto(prodottoConverter.convertBOToEntity(contoBO.getProdottoBO()));
-		//conto.setIdCliente(10L);
-		//conto.setIdCliente(10L);
-		//Cliente cliente = new Cliente();
-		//conto.setCliente(cliente);	
+		
 		return conto;
 	}
 

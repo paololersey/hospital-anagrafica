@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.application.dal.entity.Conto;
+
 
 public class ClienteBO implements java.io.Serializable {
 
@@ -101,6 +103,11 @@ public class ClienteBO implements java.io.Serializable {
 
 	public void setContoBOList(Set<ContoBO> contoBOList) {
 		this.contoBOList = contoBOList;
+	}
+	
+	public void addContoBO(ContoBO contoBO) {
+		this.contoBOList.add(contoBO);
+		contoBO.setClienteBO(this);
 	}
 
 }

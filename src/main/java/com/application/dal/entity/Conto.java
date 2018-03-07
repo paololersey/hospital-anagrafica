@@ -2,6 +2,7 @@ package com.application.dal.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -87,33 +88,14 @@ public class Conto implements java.io.Serializable {
 	public void setProdotto(Prodotto prodotto) {
 		this.prodotto = prodotto;
 	}
-
-//	@ManyToOne(fetch = FetchType.LAZY) 
-//	@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE", insertable = false, updatable = false)
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
 	
 	@ManyToOne(fetch = FetchType.LAZY) 
-    @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_CLIENTE")
 	public Cliente getCliente() {
 		return cliente;
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-//
-//	@Column(name = "ID_CLIENTE", insertable=false, updatable=false)
-//	public Long getIdCliente() {
-//		return idCliente;
-//	}
-//
-//	public void setIdCliente(Long idCliente) {
-//		this.idCliente = idCliente;
-//	}
 
 }

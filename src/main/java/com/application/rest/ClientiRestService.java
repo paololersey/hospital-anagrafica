@@ -1,9 +1,7 @@
 package com.application.rest;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
@@ -15,12 +13,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.commons.logging.Log;
 import org.apache.log4j.Logger;
 
 import com.application.business.ClienteProdottoBusiness;
 import com.application.business.BO.ClienteBO;
-import com.application.client.TO.ClienteWithProdottoSearchTO;
+import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.converter.ClienteConverter;
 
@@ -44,14 +41,14 @@ public class ClientiRestService {
 	@POST
 	@Path("/getClientiWithProdotto")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAnagraficaWithProdotto(ClienteWithProdottoSearchTO clienteWithProdottoSearchTO) {
+	public Response getAnagraficaWithProdotto(ClienteWithProdottoSearch clienteWithProdottoSearch) {
 
 		// replaced by clienteWithProdottoBusinessLayer through
 		// clienteWithProdottoSearchTO
 		// and get clientiWithProdottoList
 		ArrayList<ClienteWithProdottoTO> clientiWithProdottoList = new ArrayList<ClienteWithProdottoTO>();
 
-		ClienteWithProdottoTO clienteWithProdottoTO = new ClienteWithProdottoTO();
+		/*ClienteWithProdottoTO clienteWithProdottoTO = new ClienteWithProdottoTO();
 		clienteWithProdottoTO.setCognome("SURNAME");
 		clienteWithProdottoTO.setNome("NAME");
 		GregorianCalendar gc = new GregorianCalendar();
@@ -60,12 +57,18 @@ public class ClientiRestService {
 		clienteWithProdottoTO.setDataNascita(gc.getTime());
 		clienteWithProdottoTO.setCodiceFiscale("CODICE_FISCALE_1");
 		clienteWithProdottoTO.setNome("NAME");
-		clienteWithProdottoTO.setSesso("M");
+		clienteWithProdottoTO.setSesso("M");*/
 		/*clienteWithProdottoTO.setProvincia("PD");
-		clienteWithProdottoTO.setDescProdotto(PRODOTTO_PIU_PREVIDENZA);*/
+		clienteWithProdottoTO.setDescProdotto(PRODOTTO_PIU_PREVIDENZA);
 
-		clientiWithProdottoList.add(clienteWithProdottoTO);
-
+		clientiWithProdottoList.add(clienteWithProdottoTO);*/
+		
+		List<ClienteBO> returnedClienteBOList = clienteProdottoBusiness.getClientiWithProdotto(clienteWithProdottoSearch);
+		
+		for(ClienteBO clientBO: returnedClienteBOList) {
+			clientiWithProdottoList.add(clienteConverter.convertBOtoTO(clientBO));
+		}
+		
 		return Response.ok(clientiWithProdottoList).status(200).build();
 
 	}

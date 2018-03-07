@@ -1,17 +1,19 @@
 package com.application.dal.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.criteria.CriteriaBuilder;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.application.business.BO.ClienteBO;
+import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.converter.ClienteConverter;
 import com.application.dal.entity.Cliente;
 import com.application.util.HibernateUtil;
@@ -119,6 +121,33 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	private Session getCurrentSession() {
 		return HibernateUtil.getCurrentSession();
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ClienteBO> getClienti(ClienteWithProdottoSearch clienteWithProdottoSearch) throws Exception {
+		
+		try {
+			Criteria criteria = getCurrentSession().createCriteria(Cliente.class);
+			//criteria.createAlias("contiList","conto");
+			//criteria.add(Restrictions.ne("conto.dataApertura", null));
+			
+			List<Cliente> clientList = (List<Cliente>) criteria.list();                                                                     	
+			List<ClienteBO> clienteBOList  = new ArrayList<ClienteBO>();
+			
+			for(Cliente cliente:clientList) {
+				clienteBOList.add(clienteConverter.convertEntityToBO(cliente));
+			}
+			
+		} catch (HibernateException e) {
+			log.error(e.getMessage(),e);
+			throw new HibernateException(e);
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+			throw new Exception(e); // TO fix message
+		}
+		return null;
 	}
 
 

@@ -2,7 +2,9 @@ package com.application.dal.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +21,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.application.business.BO.ContoBO;
+
 @Entity
 @Table(name = "CLIENTE")
 public class Cliente implements java.io.Serializable {
@@ -32,7 +36,7 @@ public class Cliente implements java.io.Serializable {
 	private String sesso;
 	private Date dataNascita;
 	private Provincia provincia;
-	private List<Conto> contiList = new ArrayList<>();
+	private Set<Conto> contiList = new HashSet<>();
 
 	public Cliente() {
 	}
@@ -105,15 +109,21 @@ public class Cliente implements java.io.Serializable {
 		this.provincia = provincia;
 	}
 
-//	@OneToMany
-//	@JoinColumn(name = "ID_CLIENTE", referencedColumnName="ID_CLIENTE")
-	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	public List<Conto> getContiList() {
-		return contiList;
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
+	public Set<Conto> getContiList() {
+		return this.contiList;
 	}
 
-	public void setContiList(List<Conto> contiList) {
+	public void setContiList(Set<Conto> contiList) {
 		this.contiList = contiList;
 	}
+	
+	/*  To avoid circular recursion, use this method **/
+	public void addConto(Conto conto) {
+		this.contiList.add(conto);
+		conto.setCliente(this);
+	}
+	
+	
 
 }
