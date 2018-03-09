@@ -118,7 +118,7 @@ public class ProdottiRestService {
 	@GET
 	@Path("/getProdottoDetail/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProdottoSuggestion(@PathParam("id") Long id) {
+	public Response getProdottoDetail(@PathParam("id") Long id) {
 
 
 		// to be replaced by prodottiBusinessLayer

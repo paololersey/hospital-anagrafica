@@ -89,27 +89,16 @@ public class ClienteDaoImpl implements ClienteDao {
 	public ClienteBO saveOpeningAndClosingSession(ClienteBO clienteBO) throws Exception {
 
 		ClienteBO returned = null;
-		try {
 
-			Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 
-			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
+		Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
 
-			session.beginTransaction();
-			session.save(cliente);
-			session.getTransaction().commit();
+		session.beginTransaction();
+		session.save(cliente);
+		session.getTransaction().commit();
 
-			returned = clienteConverter.convertEntityToBO(cliente);
-
-		} catch (MappingException me) {
-			log.error(me);
-			throw new HibernateException("Hibernate mapping Exception in class " + className
-					+ ", method saveOpeningAndClosingSession, exception = " + me.getMessage());
-		} catch (Exception e) {
-			log.error(e);
-			throw new Exception("Error in class " + className + ", method saveOpeningAndClosingSession, exception = "
-					+ e.getMessage());
-		}
+		returned = clienteConverter.convertEntityToBO(cliente);
 
 		return returned;
 
@@ -187,17 +176,18 @@ public class ClienteDaoImpl implements ClienteDao {
 	@Override
 	public ClienteBO getClienteById(Long id) throws Exception {
 		ClienteBO clienteBO = null;
-		
+
 		try {
 			Criteria criteria = getCurrentSession().createCriteria(Cliente.class);
 			criteria.add(Restrictions.eq("id", id));
 			criteria.createAlias("contiList", "conto");
 			Cliente cliente = (Cliente) criteria.uniqueResult();
 			clienteBO = clienteConverter.convertEntityToBO(cliente);
-			
+
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new Exception("Error in class " + className + ", method getClienteById, exception = " + e.getMessage());
+			throw new Exception(
+					"Error in class " + className + ", method getClienteById, exception = " + e.getMessage());
 		}
 
 		return clienteBO;
@@ -208,14 +198,13 @@ public class ClienteDaoImpl implements ClienteDao {
 	public Long delete(ClienteBO clienteBO) throws Exception {
 		try {
 			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
-			getCurrentSession().delete("cliente",cliente);
+			getCurrentSession().delete("cliente", cliente);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new Exception("Error in class " + className + ", method delete, exception = " + e.getMessage());
 		}
-		
+
 		return clienteBO.getId();
 	}
-
 
 }

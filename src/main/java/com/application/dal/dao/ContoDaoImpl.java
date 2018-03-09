@@ -24,36 +24,39 @@ import com.application.util.HibernateUtil;
 public class ContoDaoImpl implements ContoDao {
 
 	private static String className = ContoDaoImpl.class.getName();
-	
+
 	@Inject
 	private transient Logger log;
 
 	@Inject
 	private ContoConverter contoConverter;
 
-	
-
 	private Session getCurrentSession() {
 		return HibernateUtil.getCurrentSession();
 	}
-	
+
 	@Override
 	public ContoBO getContoByIdCliente(Long idCliente) throws Exception {
-	
+
 		ContoBO contoBO = null;
 
-			try {
-				Conto conto = (Conto) getCurrentSession().createCriteria(Conto.class).createAlias("cliente", "cliente")
-						.add(Restrictions.eq("cliente.id", idCliente)).uniqueResult();
-				contoBO = contoConverter.convertEntityToBO(conto);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				throw new Exception("Error in class " + className + ", method getContoByIdCliente, exception" + e);
-			}
+		try {
+			Conto conto = (Conto) getCurrentSession().createCriteria(Conto.class).createAlias("cliente", "cliente")
+					.add(Restrictions.eq("cliente.id", idCliente)).uniqueResult();
+			contoBO = contoConverter.convertEntityToBO(conto);
+		} catch (MappingException me) {
+			log.error(me);
+			throw new MappingException("Hibernate mapping Exception in class " + className
+					+ ", method saveOpeningAndClosingSession, exception = " + me.getMessage());
+		} catch (HibernateException e) {
+			log.error(e.getMessage(), e);
+			throw new HibernateException("Error in class " + className + ", method getContoByIdCliente, exception" + e);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new Exception("Error in class " + className + ", method getContoByIdCliente, exception" + e);
+		}
 
-			return contoBO;		
+		return contoBO;
 	}
-
-
 
 }
