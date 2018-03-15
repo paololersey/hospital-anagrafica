@@ -35,6 +35,7 @@ public class Cliente implements java.io.Serializable {
 	private String codiceFiscale;
 	private String sesso;
 	private Date dataNascita;
+	private Date dataFine;
 	private Provincia provincia;
 	private Set<Conto> contiList = new HashSet<>();
 
@@ -122,6 +123,16 @@ public class Cliente implements java.io.Serializable {
 	public void addConto(Conto conto) {
 		this.contiList.add(conto);
 		conto.setCliente(this);
+	}
+	
+	@Column(name = "DATA_FINE", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDataFine() {
+		return dataFine;
+	}
+
+	public void setDataFine(Date dataFine) {
+		this.dataFine = dataFine;
 	}
 	
 	

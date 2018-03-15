@@ -17,6 +17,7 @@ public class ClienteBO implements java.io.Serializable {
 	private String codiceFiscale;
 	private String sesso;
 	private Date dataNascita;
+	private Date dataFine;
 	private String codiceProvincia;
 	private String nomeProdotto;
 	private ProvinciaBO provinciaBO;
@@ -108,6 +109,14 @@ public class ClienteBO implements java.io.Serializable {
 	public void addContoBO(ContoBO contoBO) {
 		this.contoBOList.add(contoBO);
 		contoBO.setClienteBO(this);
+	}
+
+	public Date getDataFine() {
+		return dataFine;
+	}
+
+	public void setDataFine(Date dataFine) {
+		this.dataFine = dataFine;
 	}
 
 }

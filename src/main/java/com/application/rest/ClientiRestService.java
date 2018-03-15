@@ -14,14 +14,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
 import com.application.business.ClienteProdottoBusiness;
 import com.application.business.BO.ClienteBO;
 import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.converter.ClienteConverter;
+import com.application.exception.RestException;
 
-//http://localhost:8080/RESTfulExample/rest/message/custom%20message
 @Path("/clienti")
 public class ClientiRestService {
 
@@ -48,27 +49,29 @@ public class ClientiRestService {
 		// and get clientiWithProdottoList
 		ArrayList<ClienteWithProdottoTO> clientiWithProdottoList = new ArrayList<ClienteWithProdottoTO>();
 
-		/*ClienteWithProdottoTO clienteWithProdottoTO = new ClienteWithProdottoTO();
-		clienteWithProdottoTO.setCognome("SURNAME");
-		clienteWithProdottoTO.setNome("NAME");
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.setTime(new Date());
-		gc.add(Calendar.YEAR, -40);
-		clienteWithProdottoTO.setDataNascita(gc.getTime());
-		clienteWithProdottoTO.setCodiceFiscale("CODICE_FISCALE_1");
-		clienteWithProdottoTO.setNome("NAME");
-		clienteWithProdottoTO.setSesso("M");*/
-		/*clienteWithProdottoTO.setProvincia("PD");
-		clienteWithProdottoTO.setDescProdotto(PRODOTTO_PIU_PREVIDENZA);
+		/*
+		 * ClienteWithProdottoTO clienteWithProdottoTO = new ClienteWithProdottoTO();
+		 * clienteWithProdottoTO.setCognome("SURNAME");
+		 * clienteWithProdottoTO.setNome("NAME"); GregorianCalendar gc = new
+		 * GregorianCalendar(); gc.setTime(new Date()); gc.add(Calendar.YEAR, -40);
+		 * clienteWithProdottoTO.setDataNascita(gc.getTime());
+		 * clienteWithProdottoTO.setCodiceFiscale("CODICE_FISCALE_1");
+		 * clienteWithProdottoTO.setNome("NAME"); clienteWithProdottoTO.setSesso("M");
+		 */
+		/*
+		 * clienteWithProdottoTO.setProvincia("PD");
+		 * clienteWithProdottoTO.setDescProdotto(PRODOTTO_PIU_PREVIDENZA);
+		 * 
+		 * clientiWithProdottoList.add(clienteWithProdottoTO);
+		 */
 
-		clientiWithProdottoList.add(clienteWithProdottoTO);*/
-		
-		List<ClienteBO> returnedClienteBOList = clienteProdottoBusiness.getClientiWithProdotto(clienteWithProdottoSearch);
-		
-		for(ClienteBO clientBO: returnedClienteBOList) {
+		List<ClienteBO> returnedClienteBOList = clienteProdottoBusiness
+				.getClientiWithProdotto(clienteWithProdottoSearch);
+
+		for (ClienteBO clientBO : returnedClienteBOList) {
 			clientiWithProdottoList.add(clienteConverter.convertBOtoTO(clientBO));
 		}
-		
+
 		return Response.ok(clientiWithProdottoList).status(200).build();
 
 	}
@@ -90,7 +93,13 @@ public class ClientiRestService {
 
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return Response.ok(clienteWithProdottoTO).status(500).build();
+			throw new RestException(new JSONObject() {
+				{
+					this.put("errorCode", 4);
+					this.put("description","Cliente non inserito");
+				}
+			});
+			// return Response.ok(clienteWithProdottoTO).status(500).build(); --unreachable code
 		}
 
 		return Response.ok(clienteWithProdottoTOReturned).status(200).build();
@@ -104,8 +113,8 @@ public class ClientiRestService {
 	public Response deleteCliente(@PathParam("id") Long id) {
 
 		// invoke clienteProdottoBusinessLayer to delete cliente
-		Long idReturned= clienteProdottoBusiness.deleteCliente(id);
-		
+		Long idReturned = clienteProdottoBusiness.deleteCliente(id);
+
 		return Response.ok(idReturned).status(200).build();
 
 	}

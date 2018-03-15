@@ -36,6 +36,7 @@ public class ClienteConverter {
 		ClienteBO clienteBO = new ClienteBO();
 		clienteBO.setId(cliente.getId());
 		clienteBO.setDataNascita(cliente.getDataNascita());
+		clienteBO.setDataFine(cliente.getDataFine());
 		clienteBO.setCodiceFiscale(cliente.getCodiceFiscale());
 		clienteBO.setNome(cliente.getNome());
 		clienteBO.setCognome(cliente.getCognome());
@@ -58,6 +59,7 @@ public class ClienteConverter {
 		Cliente cliente = new Cliente();
 		cliente.setId(clienteBO.getId());
 		cliente.setDataNascita(clienteBO.getDataNascita());
+		cliente.setDataFine(clienteBO.getDataFine());
 		cliente.setCodiceFiscale(clienteBO.getCodiceFiscale());
 		cliente.setNome(clienteBO.getNome());
 		cliente.setCognome(clienteBO.getCognome());

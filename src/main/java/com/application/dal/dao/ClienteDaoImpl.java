@@ -1,6 +1,7 @@
 package com.application.dal.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -153,6 +154,8 @@ public class ClienteDaoImpl implements ClienteDao {
 			if (clienteWithProdottoSearch.getCodiceProvincia() != null) {
 				criteria.add(Restrictions.eq("provincia.codice", clienteWithProdottoSearch.getCodiceProvincia()));
 			}
+			
+			Restrictions.ne("dataFine", null);
 
 			List<Cliente> clientList = (List<Cliente>) criteria.list();
 			List<ClienteBO> clienteBOList = new ArrayList<ClienteBO>();
@@ -198,7 +201,8 @@ public class ClienteDaoImpl implements ClienteDao {
 	public Long delete(ClienteBO clienteBO) throws Exception {
 		try {
 			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
-			getCurrentSession().delete("cliente", cliente);
+			cliente.setDataFine(new Date());
+			getCurrentSession().merge("cliente", cliente);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new Exception("Error in class " + className + ", method delete, exception = " + e.getMessage());
