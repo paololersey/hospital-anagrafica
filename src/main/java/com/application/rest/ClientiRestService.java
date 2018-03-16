@@ -96,10 +96,11 @@ public class ClientiRestService {
 			throw new RestException(new JSONObject() {
 				{
 					this.put("errorCode", 4);
-					this.put("description","Cliente non inserito");
+					this.put("description", "Cliente non inserito");
 				}
 			});
-			// return Response.ok(clienteWithProdottoTO).status(500).build(); --unreachable code
+			// return Response.ok(clienteWithProdottoTO).status(500).build(); --unreachable
+			// code
 		}
 
 		return Response.ok(clienteWithProdottoTOReturned).status(200).build();
@@ -111,9 +112,21 @@ public class ClientiRestService {
 	@DELETE
 	@Path("/deleteCliente/{id}")
 	public Response deleteCliente(@PathParam("id") Long id) {
-
+		Long idReturned = null;
 		// invoke clienteProdottoBusinessLayer to delete cliente
-		Long idReturned = clienteProdottoBusiness.deleteCliente(id);
+		try {
+			idReturned = clienteProdottoBusiness.deleteCliente(id);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(new JSONObject() {
+				{
+					this.put("errorCode", 1);
+					this.put("description", "Cliente non eliminato");
+				}
+			});
+			// return Response.ok(clienteWithProdottoTO).status(500).build(); --unreachable
+			// code
+		}
 
 		return Response.ok(idReturned).status(200).build();
 
