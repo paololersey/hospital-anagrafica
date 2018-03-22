@@ -11,7 +11,7 @@ public class RestException extends WebApplicationException {
 
 	private static final long serialVersionUID = 6617679241790872844L;
 
-	public RestException(JSONObject jsonObject) {
+	public RestException(String jsonObject) {
 		super(Response.status(Response.Status.OK).entity(jsonObject).type(MediaType.APPLICATION_JSON).build());
 	}
 }

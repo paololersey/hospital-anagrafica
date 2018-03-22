@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.WebApplicationException;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;

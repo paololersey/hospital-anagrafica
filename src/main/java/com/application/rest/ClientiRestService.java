@@ -22,6 +22,7 @@ import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.converter.ClienteConverter;
 import com.application.exception.RestException;
+import com.application.util.JsonUtil;
 
 @Path("/clienti")
 public class ClientiRestService {
@@ -35,7 +36,12 @@ public class ClientiRestService {
 	@Inject
 	private transient Logger log;
 
-	private static String PRODOTTO_PIU_PREVIDENZA = "Prodotto piu' previdenza";
+	private static String CLIENTI_GET_FAIL= "CLIENT_001";
+	private static String CLIENTI_GET_FAIL_DESC = "Errore nel recupero del cliente";
+	private static String INSERT_EDIT_CLIENT_FAIL = "CLIENT_002";
+	private static String INSERT_EDIT_CLIENT_FAIL_DESC = "Errore nell'inserimento/update del cliente";
+	private static String DELETE_CLIENTE_FAIL = "CLIENT_003";
+	private static String DELETE_CLIENTE_FAIL_DESC = "Errore nel delete del cliente";
 
 	/** GET ANAGRAFICA TABLE WITH PRODOTTO INDICATION FOR THE MAIN GRID */
 
@@ -64,12 +70,16 @@ public class ClientiRestService {
 		 * 
 		 * clientiWithProdottoList.add(clienteWithProdottoTO);
 		 */
+		try {
+			List<ClienteBO> returnedClienteBOList = clienteProdottoBusiness
+					.getClientiWithProdotto(clienteWithProdottoSearch);
 
-		List<ClienteBO> returnedClienteBOList = clienteProdottoBusiness
-				.getClientiWithProdotto(clienteWithProdottoSearch);
-
-		for (ClienteBO clientBO : returnedClienteBOList) {
-			clientiWithProdottoList.add(clienteConverter.convertBOtoTO(clientBO));
+			for (ClienteBO clientBO : returnedClienteBOList) {
+				clientiWithProdottoList.add(clienteConverter.convertBOtoTO(clientBO));
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(CLIENTI_GET_FAIL, CLIENTI_GET_FAIL_DESC).toString());
 		}
 
 		return Response.ok(clientiWithProdottoList).status(200).build();
@@ -93,14 +103,8 @@ public class ClientiRestService {
 
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new RestException(new JSONObject() {
-				{
-					this.put("errorCode", 4);
-					this.put("description", "Cliente non inserito");
-				}
-			});
-			// return Response.ok(clienteWithProdottoTO).status(500).build(); --unreachable
-			// code
+			throw new RestException(
+					JsonUtil.writeJsonError(INSERT_EDIT_CLIENT_FAIL, INSERT_EDIT_CLIENT_FAIL_DESC).toString());
 		}
 
 		return Response.ok(clienteWithProdottoTOReturned).status(200).build();
@@ -118,14 +122,7 @@ public class ClientiRestService {
 			idReturned = clienteProdottoBusiness.deleteCliente(id);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new RestException(new JSONObject() {
-				{
-					this.put("errorCode", 1);
-					this.put("description", "Cliente non eliminato");
-				}
-			});
-			// return Response.ok(clienteWithProdottoTO).status(500).build(); --unreachable
-			// code
+			throw new RestException(JsonUtil.writeJsonError(DELETE_CLIENTE_FAIL, DELETE_CLIENTE_FAIL_DESC).toString());
 		}
 
 		return Response.ok(idReturned).status(200).build();
