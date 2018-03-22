@@ -16,12 +16,17 @@ import com.application.business.ProvinciaBusiness;
 import com.application.business.BO.ProvinciaBO;
 import com.application.client.TO.ProvinciaTO;
 import com.application.converter.ProvinciaConverter;
+import com.application.exception.RestException;
+import com.application.util.JsonUtil;
 
-//http://localhost:8080/bankingAcademy/rest/province/getProvinceList
-//http://localhost:8080/bankingAcademy/rest/province/getProvinceById/PD
+//http://localhost:8080/bank-academy/rest/province/getProvinceList
+//http://localhost:8080/bank-academy/rest/province/getProvinceById/PD
 @Path("/province")
 public class ProvinceRestService {
 
+	private static String PROV_NOT_GET = "PROV_001";
+	private static String PROV_NOT_GET_DESC = "Errore nel recupero delle province";
+	
 	@Inject
 	private transient Logger log;
 
@@ -59,9 +64,10 @@ public class ProvinceRestService {
 				provinceList.add(provinciaConverter.convertBOtoTO(provinciaBO));
 			}
 		} catch (Exception e) {
-			log.error(e.getMessage());
-			return Response.ok(provinceList).status(500).build();
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(PROV_NOT_GET, PROV_NOT_GET_DESC).toString());
 		}
+
 		return Response.ok(provinceList).status(200).build();
 
 	}
