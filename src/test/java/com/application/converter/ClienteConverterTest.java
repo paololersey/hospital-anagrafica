@@ -4,7 +4,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.util.Date;
-import java.util.HashSet;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,7 +43,7 @@ public class ClienteConverterTest {
 			assertNotNull(clienteConverter.convertTOtoBO(clienteWithProdottoTO));
 		} catch (Exception e) {
 			// test failed
-			fail("test endend in error due to an internal exception");
+			fail("test ended in error due to an internal exception");
 		}
 	}
 

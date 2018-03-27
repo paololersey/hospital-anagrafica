@@ -2,6 +2,7 @@ package com.application.converter;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -9,10 +10,15 @@ import com.application.client.TO.ProdottoTO;
 
 public class ProdottoConverterTest {
 
-	private static ProdottoConverter prodottoConverter;
+	private ProdottoConverter prodottoConverter;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		// do nothing
+	}
+	
+	@Before
+	public void setUp() throws Exception {
 		prodottoConverter = new ProdottoConverter();
 	}
 
