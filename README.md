@@ -1,2 +1,2 @@
-# restEasyWildflySkeleton
-Project containing resteasy + cdi + hibernate implementation of sample bank-academy, along with oracle database driver.
+# bank-academy
+Project containing an implementation of a bank-academy sample, built for academy purposes.
