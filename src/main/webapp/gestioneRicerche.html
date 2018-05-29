@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Bank academy</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="gestioneRicerche.html">Gestione ricerche</a>
+            </li>
+            <li>
+                <a href="inserimentoCliente.html">Inserimento cliente</a>
+            </li>
+        </ul>
+    </nav>
+
+    <form name="ricercaCliente" action="gestioneRicercheRisultato.html">
+        <fieldset>
+            <p>
+                <label for="nome">Nome</label>
+                <input type="text" name="nome"></input>
+                <label for="nome">Cognome</label>
+                <input type="text" name="cognome"></input>
+            </p>
+            <p>
+                <label for="dataNascita">Data nascita</label>
+                <input type="text" name="dataNascita"></input>
+                <label for="provincia">Provincia</label>
+                <select name="provincia">
+                    <option value="" selected disabled></option>
+                    <option value="BL">Belluno</option>
+                    <option value="PD">Padova</option>
+                    <option value="RO">Rovigo</option>
+                    <option value="TV">Treviso</option>
+                    <option value="VE">Venezia</option>
+                    <option value="VR">Verona</option>
+                    <option value="VI">Vicenza</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="sesso">Sesso</label>
+                <input type="radio" name="sesso" value="Maschio" />
+                <input type="radio" name="sesso" value="Femmina" />
+            </p>
+
+            <button value="Search" type="submit">Ricerca</button>
+    </form>
+
+    <footer>
+        <p>Copyright © 2018 Lynx Academy</p>
+        <img width="30" src="./assets/icon/logo-hat-little.png" alt="Academy Bank" />
+    </footer>
+</body>
+
+</html>

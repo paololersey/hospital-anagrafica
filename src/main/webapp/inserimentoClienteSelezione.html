@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Bank built by Lynx Academy">
+    <title>Bank academy - Selezione prodotto</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <img src="./assets/logo-hat-little.png" alt="Academy Bank" />
+        </a>
+        <h1>Academy Bank</h1>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="inserimento_cliente.html">Inserimento cliente</a>
+            </li>
+            <li>
+                <a href="gestione_ricerche.html">Gestione ricerche</a>
+            </li>
+        </ul>
+    </nav>
+
+    <form action="inserimentoClienteConferma.html">
+        <p>
+            <label for="prodotto">Prodotto</label>
+            <select name="prodotto">
+                <option value="" selected disabled></option>
+                <option value="Standard">Conto corrente standard</option>
+                <option value="Rosa">Conto corrente donne</option>
+                <option value="Giovani">Conto corrente under-30</option>
+                <option value="Montagna">Conto riservato residenti Belluno</option>
+            </select>
+        </p>
+        <button type="submit">OK</button>
+    </form>
+</body>
