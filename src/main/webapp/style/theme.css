@@ -1,0 +1,207 @@
+/* Generici */
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #17240A;
+}
+
+
+/* HEADER */
+
+header {
+    border-bottom: 1px solid;
+    border-bottom-color: green;
+    background-color: #E2F0D4;
+}
+
+header:empty {
+    background: none;
+    border: none;
+}
+
+header:not(.empty-header) {
+    display: table;
+    width: 100%;
+}
+
+header * {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header h1 {
+    width: 100%;
+    text-shadow: 2px 2px 3px #555F4C;
+}
+
+
+/* FOOTER */
+
+footer {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    padding: 20px 0px;
+    bottom: 0px;
+}
+
+footer p {
+    padding: 0px;
+    margin: 0px;
+    margin-left: 60px;
+}
+
+footer img{
+    position: relative;
+    top: -30px;
+    left: 15px;
+}
+
+/* PAGE */
+
+#page {}
+
+#page>nav {
+    float: left;
+    width: 20%;
+    background-color: #E2F0D4;
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: green;
+}
+
+#page>div#container {
+    margin-left: 20%;
+    padding: 15px 10px;
+
+    overflow: auto;
+    bottom: 100px;
+    position: absolute;
+    top: 80px;
+    right: 0px;
+    left: 0px;
+}
+
+
+/* NAV */
+nav>ul{
+    padding: 20px 0px 50px;
+    margin: 0px;
+}
+nav li {
+    list-style-type: none;
+}
+nav a {
+    color: #17240A;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+nav a:hover {
+    color: #fff;
+    background-color: #649B2C;
+}
+
+
+
+
+
+/* FORM */
+
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+table>caption{
+    text-align: left;
+    color: green;
+    font-weight: bold; 
+}
+th{
+    background-color:green;
+     
+}
+tr{
+    background-color: white;   
+}
+tr:nth-child(even){
+    background-color: #E2F0D4;
+}
+td{
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: green;
+}
+
+
+fieldset{
+    margin-top: 30px;
+}
+fieldset>legend{
+    color: green;
+    font-weight: bold; 
+    font-size: 1.5em
+}
+
+fieldset>button{
+    float: right;
+}
+
+
+
+
+button{
+    background: green;
+    font-size: 1.2em;
+    padding: 10px;
+    border: none;
+    color: white;
+    box-shadow: 3px 3px 4px 0px #333;
+}
+button.button-icon{
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+    height: 30px;
+}
+
+
+
+
+/* SPECIFIC PAGES */
+/*body.page-index #page>nav {
+    width: 100%;
+    overflow: hidden;
+}
+
+body.page-index #page>nav>ul{
+    padding: 0px;
+}
+
+body.page-index nav li{
+    float: left;
+}
+
+body.page-index nav li:not(:last-child) {
+    border-right: 1px solid green;
+}
+
+body.page-index #page div#container{
+    margin: 0px;
+    position: static;
+}
+
+body.page-index #page div#container>img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+}
+
+body.page-index nav li:last-child>a:after {
+    content:' |';
+    font-size: 1.5em;
+}*/

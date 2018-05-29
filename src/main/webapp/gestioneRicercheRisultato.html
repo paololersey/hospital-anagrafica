@@ -4,102 +4,122 @@
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Bank built by Lynx Academy">
+    <link rel="stylesheet" type="text/css" href="style/theme.css">
     <title>Bank academy - Gestione Ricerche Risultato</title>
 </head>
 
 <body>
     <header>
         <a href="index.html">
-            <img src="./assets/logo-hat-little.png" alt="Academy Bank" />
+            <img src="./assets/icon/logo-hat-little.png" alt="Academy Bank" />
         </a>
         <h1>Academy Bank</h1>
     </header>
-    <nav>
-        <ul>
-            <li>
-                <a href="inserimento_cliente.html">Inserimento cliente</a>
-            </li>
-            <li>
-                <a href="gestione_ricerche.html">Gestione ricerche</a>
-            </li>
-        </ul>
-    </nav>
-    <div id="mainContentContainer">
-        <form>
-            <fieldset>
-                <p>
-                    <label for="nome">Nome</label>
-                    <input type="text" name="nome"></input>
-                    <label for="nome">Cognome</label>
-                    <input type="text" name="cognome"></input>
-                </p>
-                <p>
-                    <label for="dataNascita">Data nascita</label>
-                    <input type="text" name="dataNascita"></input>
-                    <label for="provincia">Provincia</label>
-                    <select name="provincia">
-                        <option value="" selected disabled></option>
-                        <option value="BL">Belluno</option>
-                        <option value="PD">Padova</option>
-                        <option value="RO">Rovigo</option>
-                        <option value="TV">Treviso</option>
-                        <option value="VE">Venezia</option>
-                        <option value="VR">Verona</option>
-                        <option value="VI">Vicenza</option>
-                    </select>
-                </p>
+    <div id="page">
+        <nav>
+            <ul>
+                <li>
+                    <a href="inserimentoCliente.html">Inserimento cliente</a>
+                </li>
+                <li>
+                    <a href="gestioneRicerche.html">Gestione ricerche</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="container">
+            <form>
+                <fieldset>
+                    <p>
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome"></input>
+                        <label for="nome">Cognome</label>
+                        <input type="text" name="cognome"></input>
+                    </p>
+                    <p>
+                        <label for="dataNascita">Data nascita</label>
+                        <input type="text" name="dataNascita"></input>
+                        <label for="provincia">Provincia</label>
+                        <select name="provincia">
+                            <option value="" selected disabled></option>
+                            <option value="BL">Belluno</option>
+                            <option value="PD">Padova</option>
+                            <option value="RO">Rovigo</option>
+                            <option value="TV">Treviso</option>
+                            <option value="VE">Venezia</option>
+                            <option value="VR">Verona</option>
+                            <option value="VI">Vicenza</option>
+                        </select>
+                    </p>
 
-                <p>
-                    <label for="sesso">Sesso</label>
-                    <input type="radio" name="sesso" value="Maschio" />
-                    <input type="radio" name="sesso" value="Femmina" />
-                </p>
+                    <p>
+                        <label for="sesso">Sesso</label>
+                        <input type="radio" name="sesso" value="Maschio" />
+                        <input type="radio" name="sesso" value="Femmina" />
+                    </p>
 
-        </form>
+            </form>
 
-        <legend>Risultato</legend>
+            <legend>Risultato</legend>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th>Cognome</th>
-                    <th>Nome</th>
-                    <th>Data di nascita</th>
-                    <th>Provincia</th>
-                    <th>Prodotto</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="inserimentoCliente.html">
-                            <img title="Modifica" width="20" src="./assets/icons/edit.png" />
-                        </a>
-                    </td>
-                    <td>
-                        <a href="gestioneRicercheCancella.html">
-                            <img title="Cancella" width="20" src="./assets/icons/trash.png" />
-                        </a>
-                    </td>
-                    <td>Hopkins</td>
-                    <td>Anthony</td>
-                    <td>31/12/1937</td>
-                    <td>Wales</td>
-                    <td>Giovani</td>
-                </tr>
-            </tbody>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Cognome</th>
+                        <th>Nome</th>
+                        <th>Data di nascita</th>
+                        <th>Provincia</th>
+                        <th>Prodotto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="inserimentoCliente.html">
+                                <img title="Modifica" width="20" src="./assets/icon/edit.png" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="gestioneRicercheCancella.html">
+                                <img title="Cancella" width="20" src="./assets/icon/trash.png" />
+                            </a>
+                        </td>
+                        <td>Hopkins</td>
+                        <td>Anthony</td>
+                        <td>31/12/1937</td>
+                        <td>Wales</td>
+                        <td>Giovani</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="inserimentoCliente.html">
+                                <img title="Modifica" width="20" src="./assets/icon/edit.png" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="gestioneRicercheCancella.html">
+                                <img title="Cancella" width="20" src="./assets/icon/trash.png" />
+                            </a>
+                        </td>
+                        <td>Mazzi</td>
+                        <td>Andrea</td>
+                        <td>31/12/1997</td>
+                        <td>Padova</td>
+                        <td>Giovani</td>
+                    </tr>
+                </tbody>
 
-        </table>
+            </table>
 
 
 
+        </div>
     </div>
 
     <footer>
         <p>Copyright © 2018 Lynx Academy</p>
-        <img width="30" src="./assets/logo-hat-little.png" alt="Academy Bank" />
+        <img width="30" src="./assets/icon/logo-hat-little.png" alt="Academy Bank" />
     </footer>
 </body>
 
