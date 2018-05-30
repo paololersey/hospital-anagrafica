@@ -59,7 +59,7 @@ footer img{
     left: 15px;
 }
 
-/* PAGE */
+/* page */
 
 #page {}
 
@@ -170,8 +170,31 @@ button.button-icon{
 
 
 
+/* SINGLE DIALOG */
+#singleDialog.dialog{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(150,155,144, 0.8);
+    display: flex;
+}
 
-/* SPECIFIC PAGES */
+#singleDialog.dialog .dialobBox{
+    border: 1px solid #333;
+    text-align: center;
+    background: white;
+    width: 80%;
+    margin: auto;
+}
+
+#singleDialog.dialog .buttonContainer{
+    padding: 10px;
+}
+
+
+/* SPECIFIC pageS */
 /*body.page-index #page>nav {
     width: 100%;
     overflow: hidden;
