@@ -8,17 +8,17 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 
 		<!-- To be changed with actual database -->
-
-		<!-- 	<property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.1.158:1521:PULSE</property>
+<!--
+			<property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.1.158:1521:PULSE</property>
 		<property name="hibernate.connection.username">PULSE</property>
 		<property name="hibernate.connection.password">PULSE</property>
-	    <property name="hibernate.default_schema">PULSE</property> -->
+	    <property name="hibernate.default_schema">PULSE</property>  -->
 		
 	 	<property name="hibernate.connection.url">jdbc:oracle:thin:@HW-00737:1521/orcl.lynx.italy</property>
 		<property name="hibernate.connection.username">banca</property>
 		<property name="hibernate.connection.password">banca</property>
 
-		<!-- -->
+		
 
 		<property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
 		<property name="show_sql">true</property>

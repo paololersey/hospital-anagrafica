@@ -19,6 +19,8 @@ import com.application.business.BO.ProdottoBO;
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.client.TO.ProdottoTO;
 import com.application.converter.ProdottoConverter;
+import com.application.exception.BusinessException;
+import com.application.exception.ConverterException;
 import com.application.exception.RestException;
 import com.application.util.JsonUtil;
 
@@ -81,7 +83,10 @@ public class ProdottiRestService {
 			for (ProdottoBO prodottoBO : returnedProdottoBOList) {
 				prodottiList.add(prodottoConverter.convertBOtoTO(prodottoBO));
 			}
-		} catch (Exception e) {
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(PROD_NOT_GET, PROD_NOT_GET_DESC).toString());
+		} catch (BusinessException e) {
 			log.error(e.getMessage(), e);
 			throw new RestException(JsonUtil.writeJsonError(PROD_NOT_GET, PROD_NOT_GET_DESC).toString());
 		}
@@ -109,7 +114,10 @@ public class ProdottiRestService {
 			ProdottoBO prodottoBOReturned = prodottoBusiness.getProdottoSuggestion(clienteWithProdottoTO);
 			prodottoConverter = null;
 			prodottoTO = prodottoConverter.convertBOtoTO(prodottoBOReturned);
-		} catch (Exception e) {
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(PROD_NO_SUGG, PROD_NO_SUGG_DESC).toString());
+		} catch (BusinessException e) {
 			log.error(e.getMessage(), e);
 			throw new RestException(JsonUtil.writeJsonError(PROD_NO_SUGG, PROD_NO_SUGG_DESC).toString());
 		}
@@ -137,7 +145,10 @@ public class ProdottiRestService {
 		try {
 			ProdottoBO prodottoBOReturned = prodottoBusiness.getProdottoById(id);
 			prodottoTO = prodottoConverter.convertBOtoTO(prodottoBOReturned);
-		} catch (Exception e) {
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(PROD_NO_SUGG, PROD_NO_SUGG_DESC).toString());
+		} catch (BusinessException e) {
 			log.error(e.getMessage(), e);
 			throw new RestException(JsonUtil.writeJsonError(PROD_NO_DETAILS, PROD_NO_DETAILS_DESC).toString());
 		}

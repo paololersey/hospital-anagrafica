@@ -16,6 +16,8 @@ import com.application.business.ProvinciaBusiness;
 import com.application.business.BO.ProvinciaBO;
 import com.application.client.TO.ProvinciaTO;
 import com.application.converter.ProvinciaConverter;
+import com.application.exception.BusinessException;
+import com.application.exception.ConverterException;
 import com.application.exception.RestException;
 import com.application.util.JsonUtil;
 
@@ -63,9 +65,12 @@ public class ProvinceRestService {
 			for (ProvinciaBO provinciaBO : returnedProvinciaBOList) {
 				provinceList.add(provinciaConverter.convertBOtoTO(provinciaBO));
 			}
-		} catch (Exception e) {
+		}  catch (ConverterException e) {
 			log.error(e.getMessage(), e);
-			throw new RestException(JsonUtil.writeJsonError(PROV_NOT_GET, PROV_NOT_GET_DESC).toString());
+			throw new RestException(JsonUtil.writeJsonError(PROV_NOT_GET, PROV_NOT_GET).toString());
+		} catch (BusinessException e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(PROV_NOT_GET, PROV_NOT_GET).toString());
 		}
 
 		return Response.ok(provinceList).status(200).build();

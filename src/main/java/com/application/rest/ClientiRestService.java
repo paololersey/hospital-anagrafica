@@ -21,6 +21,8 @@ import com.application.business.BO.ClienteBO;
 import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.client.TO.ClienteWithProdottoTO;
 import com.application.converter.ClienteConverter;
+import com.application.exception.BusinessException;
+import com.application.exception.ConverterException;
 import com.application.exception.RestException;
 import com.application.util.JsonUtil;
 
@@ -36,7 +38,7 @@ public class ClientiRestService {
 	@Inject
 	private transient Logger log;
 
-	private static String CLIENTI_GET_FAIL= "CLIENT_001";
+	private static String CLIENTI_GET_FAIL = "CLIENT_001";
 	private static String CLIENTI_GET_FAIL_DESC = "Errore nel recupero del cliente";
 	private static String INSERT_EDIT_CLIENT_FAIL = "CLIENT_002";
 	private static String INSERT_EDIT_CLIENT_FAIL_DESC = "Errore nell'inserimento/update del cliente";
@@ -77,7 +79,10 @@ public class ClientiRestService {
 			for (ClienteBO clientBO : returnedClienteBOList) {
 				clientiWithProdottoList.add(clienteConverter.convertBOtoTO(clientBO));
 			}
-		} catch (Exception e) {
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(CLIENTI_GET_FAIL, CLIENTI_GET_FAIL_DESC).toString());
+		} catch (BusinessException e) {
 			log.error(e.getMessage(), e);
 			throw new RestException(JsonUtil.writeJsonError(CLIENTI_GET_FAIL, CLIENTI_GET_FAIL_DESC).toString());
 		}
@@ -101,7 +106,10 @@ public class ClientiRestService {
 
 			clienteWithProdottoTOReturned = clienteConverter.convertBOtoTO(returnedClienteBO);
 
-		} catch (Exception e) {
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new RestException(JsonUtil.writeJsonError(INSERT_EDIT_CLIENT_FAIL, INSERT_EDIT_CLIENT_FAIL_DESC).toString());
+		} catch (BusinessException e) {
 			log.error(e.getMessage(), e);
 			throw new RestException(
 					JsonUtil.writeJsonError(INSERT_EDIT_CLIENT_FAIL, INSERT_EDIT_CLIENT_FAIL_DESC).toString());
@@ -120,7 +128,7 @@ public class ClientiRestService {
 		// invoke clienteProdottoBusinessLayer to delete cliente
 		try {
 			idReturned = clienteProdottoBusiness.deleteCliente(id);
-		} catch (Exception e) {
+		} catch (BusinessException e) {
 			log.error(e.getMessage(), e);
 			throw new RestException(JsonUtil.writeJsonError(DELETE_CLIENTE_FAIL, DELETE_CLIENTE_FAIL_DESC).toString());
 		}

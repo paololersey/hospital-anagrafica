@@ -23,6 +23,8 @@ import com.application.dal.dao.ClienteDao;
 import com.application.dal.dao.ContoDao;
 import com.application.dal.dao.ProdottoDao;
 import com.application.dal.dao.ProvinciaDao;
+import com.application.exception.BusinessException;
+import com.application.exception.DaoException;
 
 @Stateless
 @Transactional
@@ -34,6 +36,7 @@ import com.application.dal.dao.ProvinciaDao;
  */
 public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 
+	private static String className = ClienteProdottoBusinessImpl.class.getName();
 	/*
 	 * su questo layer possoe effettuare operazioni logiche e qui dovrebbe stare la
 	 * transazione
@@ -57,7 +60,7 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 	private ContoDao contoDao;
 
 	@Override
-	public ClienteBO saveCliente(ClienteBO clienteBO) throws Exception {
+	public ClienteBO saveCliente(ClienteBO clienteBO) throws BusinessException {
 		ClienteBO returnedClienteBO = null;
 
 		try {
@@ -90,35 +93,36 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 
 			// other update on eventDate to show transactionality
 
-		} catch (Exception e) {
+		} catch (DaoException e) {
 			log.error(e.getMessage(), e);
-			throw new WebApplicationException();
+			throw new BusinessException("Error in class " + className + ", method saveCliente ");
 		}
+		
 		return returnedClienteBO;
 
 	}
 
 	@Override
-	public List<ClienteBO> getClientiWithProdotto(ClienteWithProdottoSearch clienteWithProdottoSearch) {
+	public List<ClienteBO> getClientiWithProdotto(ClienteWithProdottoSearch clienteWithProdottoSearch) throws BusinessException {
 
 		List<ClienteBO> clientiWithProdottList = new ArrayList<>();
 		try {
 			clientiWithProdottList = clienteDao.getClienti(clienteWithProdottoSearch);
-		} catch (Exception e) {
+		} catch (DaoException e) {
 			log.error(e.getMessage(), e);
-			throw new WebApplicationException(e);
+			throw new BusinessException("Error in class " + className + ", method getClientiWithProdotto ");
 		}
 		return clientiWithProdottList;
 	}
 
 	@Override
-	public Long deleteCliente(Long id) {
+	public Long deleteCliente(Long id) throws BusinessException {
 		try {
 			ClienteBO clienteBOReturned = clienteDao.getClienteById(id);
 			id = clienteDao.delete(clienteBOReturned);
-		} catch (Exception e) {
+		} catch (DaoException e) {
 			log.error(e.getMessage(), e);
-			throw new WebApplicationException(e);
+			throw new BusinessException("Error in class " + className + ", method deleteCliente ");
 		}
 		return id;
 	}

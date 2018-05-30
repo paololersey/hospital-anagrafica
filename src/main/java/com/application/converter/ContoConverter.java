@@ -6,6 +6,7 @@ import com.application.business.BO.ClienteBO;
 import com.application.business.BO.ContoBO;
 import com.application.dal.entity.Cliente;
 import com.application.dal.entity.Conto;
+import com.application.exception.ConverterException;
 
 public class ContoConverter {
 
@@ -15,7 +16,7 @@ public class ContoConverter {
 	
 	/** From BUSINESS layer TO DAL layer and viceversa */
 
-	public ContoBO convertEntityToBO(Conto conto) {
+	public ContoBO convertEntityToBO(Conto conto) throws ConverterException {
 		ContoBO contoBO = new ContoBO();
 		contoBO.setIdConto(conto.getIdConto());
 		contoBO.setDataApertura(conto.getDataApertura());
@@ -24,7 +25,7 @@ public class ContoConverter {
 		return contoBO;
 	}
 
-	public Conto convertBOToEntity(ContoBO contoBO) throws Exception {
+	public Conto convertBOToEntity(ContoBO contoBO) throws ConverterException {
 		Conto conto = new Conto();
 		conto.setIdConto(contoBO.getIdConto());
 		conto.setDataApertura(contoBO.getDataApertura());

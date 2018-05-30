@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.MappingException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -17,6 +16,8 @@ import com.application.business.BO.ClienteBO;
 import com.application.client.TO.ClienteWithProdottoSearch;
 import com.application.converter.ClienteConverter;
 import com.application.dal.entity.Cliente;
+import com.application.exception.ConverterException;
+import com.application.exception.DaoException;
 import com.application.util.HibernateUtil;
 
 /** Data access object layer */
@@ -32,7 +33,7 @@ public class ClienteDaoImpl implements ClienteDao {
 	private ClienteConverter clienteConverter;
 
 	@Override
-	public ClienteBO merge(ClienteBO clienteBO) throws Exception {
+	public ClienteBO merge(ClienteBO clienteBO) throws DaoException {
 
 		ClienteBO returned = null;
 		try {
@@ -43,12 +44,15 @@ public class ClienteDaoImpl implements ClienteDao {
 
 			returned = clienteConverter.convertEntityToBO(cliente);
 
-		} catch (MappingException me) {
-			log.error(me);
-			throw new HibernateException("hibernate mapping exception", me);
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("error in converter");
+		} catch (HibernateException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("hibernate generic exception");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new Exception("Error in class " + className + ", method merge, exception = " + e.getMessage());
+			throw new DaoException("Error in class " + className + ", method merge ");
 		}
 
 		return returned;
@@ -56,7 +60,7 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public ClienteBO save(ClienteBO clienteBO) throws Exception {
+	public ClienteBO save(ClienteBO clienteBO) throws DaoException {
 
 		ClienteBO returned = null;
 		try {
@@ -67,13 +71,15 @@ public class ClienteDaoImpl implements ClienteDao {
 
 			returned = clienteConverter.convertEntityToBO(cliente);
 
-		} catch (MappingException me) {
-			log.error(me);
-			throw new HibernateException("Hibernate mapping Exception in class " + className
-					+ ", method save, exception = " + me.getMessage());
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("error in converter");
+		} catch (HibernateException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("hibernate generic exception");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new Exception("Error in class " + className + ", method save, exception = " + e.getMessage());
+			throw new DaoException("Error in class " + className + ", method save ");
 		}
 
 		return returned;
@@ -86,19 +92,31 @@ public class ClienteDaoImpl implements ClienteDao {
 	 */
 
 	@Override
-	public ClienteBO saveOpeningAndClosingSession(ClienteBO clienteBO) throws Exception {
+	public ClienteBO saveOpeningAndClosingSession(ClienteBO clienteBO) throws DaoException {
 
 		ClienteBO returned = null;
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
 
-		Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
+			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
 
-		session.beginTransaction();
-		session.save(cliente);
-		session.getTransaction().commit();
+			session.beginTransaction();
+			session.save(cliente);
+			session.getTransaction().commit();
 
-		returned = clienteConverter.convertEntityToBO(cliente);
+			returned = clienteConverter.convertEntityToBO(cliente);
+
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("error in converter");
+		} catch (HibernateException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("hibernate generic exception");
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("Error in class " + className + ", method saveOpeningAndClosingSession ");
+		}
 
 		return returned;
 
@@ -106,8 +124,17 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cliente> getAll() throws Exception {
-		return (List<Cliente>) getCurrentSession().createCriteria(Cliente.class).list();
+	public List<Cliente> getAll() throws DaoException {
+		try {
+			return (List<Cliente>) getCurrentSession().createCriteria(Cliente.class).list();
+		} catch (HibernateException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("hibernate generic exception");
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("Error in class " + className + ", method getAll ");
+		}
+
 	}
 
 	private Session getCurrentSession() {
@@ -116,7 +143,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ClienteBO> getClienti(ClienteWithProdottoSearch clienteWithProdottoSearch) throws Exception {
+	public List<ClienteBO> getClienti(ClienteWithProdottoSearch clienteWithProdottoSearch) throws DaoException {
 
 		try {
 			Criteria criteria = getCurrentSession().createCriteria(Cliente.class);
@@ -153,7 +180,7 @@ public class ClienteDaoImpl implements ClienteDao {
 			if (clienteWithProdottoSearch.getCodiceProvincia() != null) {
 				criteria.add(Restrictions.eq("provincia.codice", clienteWithProdottoSearch.getCodiceProvincia()));
 			}
-			
+
 			Restrictions.ne("dataFine", null);
 
 			List<Cliente> clientList = (List<Cliente>) criteria.list();
@@ -165,18 +192,20 @@ public class ClienteDaoImpl implements ClienteDao {
 
 			return clienteBOList;
 
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("error in converter");
 		} catch (HibernateException e) {
 			log.error(e.getMessage(), e);
-			throw new HibernateException(
-					"Error in class " + className + ", method getClienti, exception = " + e.getMessage());
+			throw new DaoException("hibernate generic exception");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new Exception("Error in class " + className + ", method getClienti, exception = " + e.getMessage());
+			throw new DaoException("Error in class " + className + ", method getClienti ");
 		}
 	}
 
 	@Override
-	public ClienteBO getClienteById(Long id) throws Exception {
+	public ClienteBO getClienteById(Long id) throws DaoException {
 		ClienteBO clienteBO = null;
 
 		try {
@@ -186,10 +215,15 @@ public class ClienteDaoImpl implements ClienteDao {
 			Cliente cliente = (Cliente) criteria.uniqueResult();
 			clienteBO = clienteConverter.convertEntityToBO(cliente);
 
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("error in converter");
+		} catch (HibernateException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("hibernate generic exception");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new Exception(
-					"Error in class " + className + ", method getClienteById, exception = " + e.getMessage());
+			throw new DaoException("Error in class " + className + ", method getClienteById ");
 		}
 
 		return clienteBO;
@@ -197,14 +231,20 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public Long delete(ClienteBO clienteBO) throws Exception {
+	public Long delete(ClienteBO clienteBO) throws DaoException {
 		try {
 			Cliente cliente = clienteConverter.convertBOToEntity(clienteBO);
 			cliente.setDataFine(new Date());
 			getCurrentSession().merge("cliente", cliente);
+		} catch (ConverterException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("error in converter");
+		} catch (HibernateException e) {
+			log.error(e.getMessage(), e);
+			throw new DaoException("hibernate generic exception");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			throw new Exception("Error in class " + className + ", method delete, exception = " + e.getMessage());
+			throw new DaoException("Error in class " + className + ", method delete ");
 		}
 
 		return clienteBO.getId();

@@ -13,6 +13,7 @@ import com.application.client.TO.ProdottoTO;
 import com.application.client.TO.ProvinciaTO;
 import com.application.dal.entity.Cliente;
 import com.application.dal.entity.Conto;
+import com.application.exception.ConverterException;
 
 public class ClienteConverter {
 
@@ -32,7 +33,7 @@ public class ClienteConverter {
 
 	/** From BUSINESS layer TO DAL layer and viceversa */
 
-	public ClienteBO convertEntityToBO(Cliente cliente) throws Exception {
+	public ClienteBO convertEntityToBO(Cliente cliente) throws ConverterException {
 		ClienteBO clienteBO = new ClienteBO();
 		clienteBO.setId(cliente.getId());
 		clienteBO.setDataNascita(cliente.getDataNascita());
@@ -49,13 +50,13 @@ public class ClienteConverter {
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			throw new Exception("Error in class " + className + ", method convertEntityToBO, exception" + e);
+			throw new ConverterException("Error in class " + className + ", method convertEntityToBO, exception" + e);
 		}
 
 		return clienteBO;
 	}
 
-	public Cliente convertBOToEntity(ClienteBO clienteBO) throws Exception {
+	public Cliente convertBOToEntity(ClienteBO clienteBO) throws ConverterException {
 		Cliente cliente = new Cliente();
 		cliente.setId(clienteBO.getId());
 		cliente.setDataNascita(clienteBO.getDataNascita());
@@ -70,9 +71,9 @@ public class ClienteConverter {
 				Conto conto = contoConverter.convertBOToEntity(contoBO);
 				cliente.addConto(conto);
 			}
-		} catch (Exception e) {
+		} catch (ConverterException e) {
 			log.error(e.getMessage());
-			throw new Exception("Error in class " + className + ", method convertBOToEntity, exception" + e);
+			throw new ConverterException("Error in class " + className + ", method convertBOToEntity, exception" + e);
 		}
 
 		return cliente;
@@ -82,7 +83,7 @@ public class ClienteConverter {
 
 	/** usato al ritorno della ricerca principale */
 	
-	public ClienteWithProdottoTO convertBOtoTO(ClienteBO clienteBO) {
+	public ClienteWithProdottoTO convertBOtoTO(ClienteBO clienteBO) throws ConverterException{
 		ClienteWithProdottoTO clienteTO = new ClienteWithProdottoTO();
 		clienteTO.setId(clienteBO.getId());
 		clienteTO.setDataNascita(clienteBO.getDataNascita());
@@ -109,7 +110,7 @@ public class ClienteConverter {
 	
 	
 
-	public ClienteBO convertTOtoBO(ClienteWithProdottoTO clienteWithProdottoTO) {
+	public ClienteBO convertTOtoBO(ClienteWithProdottoTO clienteWithProdottoTO) throws ConverterException{
 
 		ClienteBO clienteBO = new ClienteBO();
 		clienteBO.setId(clienteWithProdottoTO.getId());
