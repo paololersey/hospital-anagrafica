@@ -5,10 +5,12 @@
 	<meta charset="ISO-8859-1">
 	<title>Bank academy</title>
 	<link rel="stylesheet" type="text/css" href="style/theme.css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+   
 </head>
 
-<body>
+<body ng-app="app.module">
 	<header>
 		<a href="index.html">
 			<img src="./assets/icon/logo-hat-little.png" alt="Academy Bank" />
@@ -21,36 +23,45 @@
 			<ul>
 				<li>
 					<!--<a  onclick="goToPage('gestioneRicerche.html')">Gestione ricerche</a>-->
-					<a href="#" data-link-page="gestioneRicerche.html">Gestione ricerche</a>
+					<!--<a href="#" data-link-page="gestioneRicerche.html">Gestione ricerche</a>-->
+					<a href="#!gestioneRicerche">Gestione ricerche</a>
+
 				</li>
 				<li>
 					<!--<a onclick="goToPage('inserimentoCliente.html')">Inserimento cliente</a>-->
-					<a href="#" data-link-page="inserimentoCliente.html">Inserimento cliente</a>
+					<!--<a href="#" data-link-page="inserimentoCliente.html">Inserimento cliente</a>-->
+					<a href="#!inserimentoCliente">Inserimento cliente</a>
 				</li>
 			</ul>
 		</nav>
 
-		<div id="container">
-			<img src="./assets/icon/logo-home-big.png">
-		</div>
+		<div ng-view></div>
+		
 	</div>
 
-
+	
 
 	<footer>
 		<p>Copyright © 2018 Lynx Academy</p>
 		<img width="30" src="./assets/icon/logo-hat-little.png" alt="Academy Bank" />
 	</footer>
 
-	<script>
-			function goToPage(page){
-				document.location.href = page;
-			}
-			console.log("** File ./index.html has been loaded **");
-		</script>
-
-	<script src="./script/scripts.js"></script>
 
 </body>
+
+<script>
+	var app = angular.module("app.module", ["ngRoute"]);
+	app.config(function ($routeProvider) {
+		$routeProvider
+			.when("/", {
+				templateUrl: "home.html"
+			})
+			.when("/inserimentoCliente", {
+				templateUrl: "inserimentoCliente.html",
+				controller: "inserimentoCliente.controller"
+			})
+	});
+</script>
+ <script src="./script/controller/inserimentoCliente.controller.js"></script>
 
 </html>
