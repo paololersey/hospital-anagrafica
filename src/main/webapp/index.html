@@ -30,7 +30,7 @@
 				<li>
 					<!--<a onclick="goToPage('inserimentoCliente.html')">Inserimento cliente</a>-->
 					<!--<a href="#" data-link-page="inserimentoCliente.html">Inserimento cliente</a>-->
-					<a href="#!inserimentoCliente">Inserimento cliente</a>
+					<a href="#!inserimentoCliente">Inserimento  cliente</a>
 				</li>
 			</ul>
 		</nav>
@@ -54,14 +54,43 @@
 	app.config(function ($routeProvider) {
 		$routeProvider
 			.when("/", {
-				templateUrl: "home.html"
+				templateUrl: "/bank-academy/home.html"
+			})
+			.when("/gestioneRicerche", {
+				templateUrl: "/bank-academy/gestioneRicerche.html",
+				controller: "gestioneRicerche.controller"
+			})
+			.when("/gestioneRicercheRisultato", {
+				templateUrl: "gestioneRicercheRisultato.html",
+				controller: "gestioneRicercheRisultato.controller"
+			})
+			.when("/gestioneRicercheCancella", {
+				templateUrl: "gestioneRicercheCancella.html",
+				controller: "gestioneRicercheCancella.controller"
 			})
 			.when("/inserimentoCliente", {
 				templateUrl: "inserimentoCliente.html",
 				controller: "inserimentoCliente.controller"
 			})
+			.when("/inserimentoClienteConsiglio", {
+				templateUrl: "inserimentoClienteConsiglio.html",
+				controller: "inserimentoClienteConsiglio.controller"
+			})
+			.when("/inserimentoClienteSelezione", {
+				templateUrl: "inserimentoClienteSelezione.html",
+				controller: "inserimentoClienteSelezione.controller"
+			})
+			.when("/inserimentoClienteConferma", {
+				templateUrl: "inserimentoClienteConferma.html",
+				controller: "inserimentoClienteConferma.controller"
+			})
 	});
 </script>
+ <script src="./script/controller/gestioneRicerche.controller.js"></script>
+ <script src="./script/controller/gestioneRicercheRisultato.controller.js"></script> 
+ <script src="./script/controller/gestioneRicercheCancella.controller.js"></script>
  <script src="./script/controller/inserimentoCliente.controller.js"></script>
-
+ <script src="./script/controller/inserimentoClienteSelezione.controller.js"></script>
+ <script src="./script/controller/inserimentoClienteConferma.controller.js"></script>
+ <script src="./script/controller/inserimentoClienteConsiglio.controller.js"></script>
 </html>

@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html>
+<div id="container">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="Bank built by Lynx Academy">
-    <link rel="stylesheet" type="text/css" href="style/theme.css">
-    <title>Bank academy - Gestione Ricerche Cancella</title>
-</head>
+    <p>Procedere con la rimozione del cliente
+        <span>[id]</span> con N° conto
+        <span>[numero conto]</span>?</p>
 
-<body>
-    <div id="container">
-
-        <p>Procedere con la rimozione del cliente <span>[id]</span> con N° conto <span>[numero conto]</span>?</p>
-
-        <form name="inserimentoCliente_conferma" action="gestioneRicercheRisultato.html">
-            <button type="submit" value="annulla">Annulla</button>
-            <button type="submit" value="conferma">Conferma</button>
-        </form>
-    </div>
-</body>
-
-</html>
+    <form name="gestioneRicercheCancella">
+        <button type="button" ng-click="submit()">Conferma</button>
+        <button type="submit" value="annulla">Annulla</button>
+    </form>
+</div>
