@@ -14,7 +14,7 @@
 		<property name="hibernate.connection.password">HR</property>
 	    <property name="hibernate.default_schema">PULSE</property> -->
 		
-	 	<property name="hibernate.connection.url">jdbc:oracle:thin:@HW-00737:1521/orcl.lynx.italy</property>
+	 	<property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.1.57:1521/orcl.lynx.italy</property>
 		<property name="hibernate.connection.username">banca</property>
 		<property name="hibernate.connection.password">banca</property>
 
