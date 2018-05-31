@@ -107,7 +107,6 @@ public class ProdottiRestService {
 		ProdottoTO prodottoTO = null;
 		try {
 			ProdottoBO prodottoBOReturned = prodottoBusiness.getProdottoSuggestion(clienteWithProdottoTO);
-			prodottoConverter = null;
 			prodottoTO = prodottoConverter.convertBOtoTO(prodottoBOReturned);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
