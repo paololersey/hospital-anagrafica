@@ -1,13 +1,9 @@
-<div id="container">
+<p>Creato cliente
+    <span>{{cliente.nome}} - {{cliente.cognome}}  </span> associato al prodotto
+    <span>{{cliente.descrizioneProdotto}}</span> 
+</p>
 
-    <p>Creato cliente
-        <span>[id]</span> associato a prodotto
-        <span>[Prodotto]</span> con N° conto
-        <span>[numero conto]</span>
-    </p>
-
-    <form name="inserimentoClienteConferma" action="index.html">
-        <!--<button type="submit" value="chiudi">Chiudi</button>-->
-        <button type="button" ng-click="submit()">Chiudi</button>
-    </form>
-</div>
+<form name="inserimentoClienteConferma" action="index.html">
+    <!--<button type="submit" value="chiudi">Chiudi</button>-->
+    <button type="button" ng-click="submit()">Chiudi</button>
+</form>

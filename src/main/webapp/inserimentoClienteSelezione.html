@@ -1,16 +1,18 @@
-<div id="container">
-    <form name="inserimentoClienteSelezione" action="inserimentoClienteConferma.html">
-        <p>
-            <label for="prodotto">Prodotto</label>
-            <select name="prodotto">
-                <option value="" selected disabled></option>
-                <option value="Standard">Conto corrente standard</option>
-                <option value="Rosa">Conto corrente donne</option>
-                <option value="Giovani">Conto corrente under-30</option>
-                <option value="Montagna">Conto riservato residenti Belluno</option>
-            </select>
-        </p>
-        <!--<button type="submit">OK</button>-->
-        <button type="button" ng-click="submit()">OK</button>
-    </form>
-</div>
+<form name="inserimentoClienteSelezione">
+    <p>
+        <!--<label for="prodotto">Prodotto</label>
+        <select name="prodotto">
+            <option value="" selected disabled></option>
+            <option value="Standard">Conto corrente standard</option>
+            <option value="Rosa">Conto corrente donne</option>
+            <option value="Giovani">Conto corrente under-30</option>
+            <option value="Montagna">Conto riservato residenti Belluno</option>
+        </select>-->
+        <label for="prodotto">Prodotto</label>
+        <select name="prodotto" id="prodotto" ng-model="cliente.nomeProdotto">
+            <option ng-repeat="prodotto in prodotti" value="{{prodotto.nomeProdotto}}">{{prodotto.descrizioneProdotto}}</option>
+        </select>
+    </p>
+    <!--<button type="submit">OK</button>-->
+    <button type="button" ng-click="submit()">OK</button>
+</form>

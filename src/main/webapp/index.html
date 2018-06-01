@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style/theme.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-   
+
 </head>
 
 <body ng-app="app.module">
@@ -30,16 +30,16 @@
 				<li>
 					<!--<a onclick="goToPage('inserimentoCliente.html')">Inserimento cliente</a>-->
 					<!--<a href="#" data-link-page="inserimentoCliente.html">Inserimento cliente</a>-->
-					<a href="#!inserimentoCliente">Inserimento  cliente</a>
+					<a href="#!inserimentoCliente">Inserimento cliente</a>
 				</li>
 			</ul>
 		</nav>
-
-		<div ng-view></div>
-		
+		<div id="container">
+			<div ng-view></div>
+		</div>
 	</div>
 
-	
+
 
 	<footer>
 		<p>Copyright © 2018 Lynx Academy</p>
@@ -52,45 +52,50 @@
 <script>
 	var app = angular.module("app.module", ["ngRoute"]);
 	app.config(function ($routeProvider) {
-		$routeProvider
-			.when("/", {
-				templateUrl: "/bank-academy/home.html"
-			})
-			.when("/gestioneRicerche", {
-				templateUrl: "/bank-academy/gestioneRicerche.html",
-				controller: "gestioneRicerche.controller"
-			})
-			.when("/gestioneRicercheRisultato", {
-				templateUrl: "gestioneRicercheRisultato.html",
-				controller: "gestioneRicercheRisultato.controller"
-			})
-			.when("/gestioneRicercheCancella", {
-				templateUrl: "gestioneRicercheCancella.html",
-				controller: "gestioneRicercheCancella.controller"
-			})
-			.when("/inserimentoCliente", {
-				templateUrl: "inserimentoCliente.html",
-				controller: "inserimentoCliente.controller"
-			})
-			.when("/inserimentoClienteConsiglio", {
-				templateUrl: "inserimentoClienteConsiglio.html",
-				controller: "inserimentoClienteConsiglio.controller"
-			})
-			.when("/inserimentoClienteSelezione", {
-				templateUrl: "inserimentoClienteSelezione.html",
-				controller: "inserimentoClienteSelezione.controller"
-			})
-			.when("/inserimentoClienteConferma", {
-				templateUrl: "inserimentoClienteConferma.html",
-				controller: "inserimentoClienteConferma.controller"
-			})
-	});
+			$routeProvider
+				.when("/", {
+					templateUrl: "/bank-academy/home.html"
+				})
+				.when("/gestioneRicerche", {
+					templateUrl: "/bank-academy/gestioneRicerche.html",
+					controller: "gestioneRicerche.controller"
+				})
+				.when("/gestioneRicercheRisultato", {
+					templateUrl: "gestioneRicercheRisultato.html",
+					controller: "gestioneRicercheRisultato.controller"
+				})
+				.when("/gestioneRicercheCancella", {
+					templateUrl: "gestioneRicercheCancella.html",
+					controller: "gestioneRicercheCancella.controller"
+				})
+				.when("/inserimentoCliente", {
+					templateUrl: "inserimentoCliente.html",
+					controller: "inserimentoCliente.controller"
+				})
+				.when("/inserimentoClienteConsiglio", {
+					templateUrl: "inserimentoClienteConsiglio.html",
+					controller: "inserimentoClienteConsiglio.controller"
+				})
+				.when("/inserimentoClienteSelezione", {
+					templateUrl: "inserimentoClienteSelezione.html",
+					controller: "inserimentoClienteSelezione.controller"
+				})
+				.when("/inserimentoClienteConferma", {
+					templateUrl: "inserimentoClienteConferma.html",
+					controller: "inserimentoClienteConferma.controller"
+				})
+		})
+		.factory('dataStoreService', function () {
+			return {};
+		});;
 </script>
- <script src="./script/controller/gestioneRicerche.controller.js"></script>
- <script src="./script/controller/gestioneRicercheRisultato.controller.js"></script> 
- <script src="./script/controller/gestioneRicercheCancella.controller.js"></script>
- <script src="./script/controller/inserimentoCliente.controller.js"></script>
- <script src="./script/controller/inserimentoClienteSelezione.controller.js"></script>
- <script src="./script/controller/inserimentoClienteConferma.controller.js"></script>
- <script src="./script/controller/inserimentoClienteConsiglio.controller.js"></script>
+
+<script src="./script/controller/gestioneRicerche.controller.js"></script>
+<script src="./script/controller/gestioneRicercheRisultato.controller.js"></script>
+<script src="./script/controller/gestioneRicercheCancella.controller.js"></script>
+<script src="./script/controller/inserimentoCliente.controller.js"></script>
+<script src="./script/controller/inserimentoClienteSelezione.controller.js"></script>
+<script src="./script/controller/inserimentoClienteConferma.controller.js"></script>
+<script src="./script/controller/inserimentoClienteConsiglio.controller.js"></script>
+
 </html>

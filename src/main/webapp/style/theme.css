@@ -160,6 +160,11 @@ button{
     border: none;
     color: white;
     box-shadow: 3px 3px 4px 0px #333;
+    cursor: pointer;
+}
+button:disabled{
+    background:lightgreen;
+    cursor: pointer;
 }
 button.button-icon{
     background-color: white;
