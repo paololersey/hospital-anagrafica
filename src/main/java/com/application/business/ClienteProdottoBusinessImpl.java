@@ -95,7 +95,7 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 
 		} catch (DaoException e) {
 			log.error(e.getMessage(), e);
-			throw new BusinessException("Error in class " + className + ", method saveCliente ");
+			throw new BusinessException("Error in class " + className + ", method saveCliente ", e);
 		}
 		
 		return returnedClienteBO;
@@ -110,7 +110,7 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 			clientiWithProdottList = clienteDao.getClienti(clienteWithProdottoSearch);
 		} catch (DaoException e) {
 			log.error(e.getMessage(), e);
-			throw new BusinessException("Error in class " + className + ", method getClientiWithProdotto ");
+			throw new BusinessException("Error in class " + className + ", method getClientiWithProdotto ", e);
 		}
 		return clientiWithProdottList;
 	}
@@ -122,7 +122,7 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 			id = clienteDao.delete(clienteBOReturned);
 		} catch (DaoException e) {
 			log.error(e.getMessage(), e);
-			throw new BusinessException("Error in class " + className + ", method deleteCliente ");
+			throw new BusinessException("Error in class " + className + ", method deleteCliente ", e);
 		}
 		return id;
 	}

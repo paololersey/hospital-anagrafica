@@ -15,6 +15,10 @@ public class BusinessException extends Exception {
 	}
 	
 	
+	public BusinessException(String message, Throwable th) {
+		this.message= message;
+	}
+
 	public String getMessage() {
 		return message;
 	}
