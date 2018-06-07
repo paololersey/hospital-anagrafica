@@ -1,0 +1,9 @@
+<p>Per il cliente 
+    <span> {{cliente.nome}}  - {{cliente.cognome}} </span>
+    <span>consigliamo il prodotto </span>
+    <span>{{prodottoConsigliato.nomeProdotto}}</span>
+</p>
+<form name="inserimentoClienteConsiglio" action="inserimentoClienteSelezione.html">
+    <!--<button type="submit">OK</button>-->
+    <button type="button" ng-click="submit()">Avanza</button>
+</form>

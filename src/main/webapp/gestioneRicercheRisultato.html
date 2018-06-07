@@ -1,0 +1,38 @@
+<div ng-include="'./gestioneRicerche.html'"></div>
+<fieldset>
+    <legend>Risultato</legend>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Cognome</th>
+                <th>Nome</th>
+                <th>Data di nascita</th>
+                <th>Provincia</th>
+                <th>Prodotto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="cliente in clienti">
+                <td>
+                    <a ng-click="tableRowClickedEdit(cliente)">
+                        <img title="Modifica" width="20" src="./assets/icon/edit.png" />
+                    </a>
+                </td>
+                <td>
+                    <a ng-click="tableRowClickedDelete(cliente)">
+                        <img title="Cancella" width="20" src="./assets/icon/trash.png" />
+                    </a>
+                </td>
+                <td>{{cliente.nome}}</td>
+                <td>{{cliente.cognome}}</td>
+                <td>{{cliente.dataNascita}}</td>
+                <td>{{cliente.codiceProvincia}}</td>
+                <td>{{cliente.nomeProdotto}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+</fieldset>

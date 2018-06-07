@@ -1,0 +1,33 @@
+
+    <form name="ricercaCliente" action="gestioneRicercheRisultato.html">
+        <fieldset>
+            <legend>Ricerca</legend>
+            <p>
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" ng-model="search.nome"></input>
+                <label for="nome">Cognome</label>
+                <input type="text" name="cognome" ng-model="search.cognome"></input>
+            </p>
+            <p>
+                <label for="dataNascita">Data nascita</label>
+                <input type="text" name="dataNascita"></input>
+                <label for="provincia">Provincia</label>
+                <select name="provincia" id="provincia" ng-model="search.codiceProvincia">
+                    <option ng-repeat="provincia in province" value="{{provincia.codice}}">{{provincia.descrizione}}</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="sesso">Sesso</label>
+                <input type="radio" name="sesso" value="Maschio" ng-model="search.sesso"/>M</input>
+                <input type="radio" name="sesso" value="Femmina" ng-model="search.sesso"/>F</input>
+
+                <label for="prodotto">Prodotto</label>
+                <select name="prodotto" id="prodotto" ng-model="search.descProdotto">
+                    <option ng-repeat="prodotto in prodotti" value="{{prodotto.nomeProdotto}}">{{prodotto.descrizioneProdotto}}</option>
+                </select>
+            </p>
+
+            <button value="Search" type="button" ng-click="submit()">Ricerca</button>
+        </fieldset>
+    </form>

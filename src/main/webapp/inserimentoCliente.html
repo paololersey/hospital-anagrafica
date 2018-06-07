@@ -1,0 +1,40 @@
+<form name="inserimentoCliente" action="inserimentoClienteConsiglio.html">
+        <fieldset>
+            <p>
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" ng-model="cliente.nome"></input>
+                <label for="nome">Cognome</label>
+                <input type="text" name="cognome" ng-model="cliente.cognome"></input>
+            </p>
+            <p>
+                <label for="dataNascita">Data nascita</label>
+                <input type="date" name="dataNascita" ng-model="cliente.dataNascita"></input>
+
+                <label for="provincia">Provincia</label>
+               <!-- <select name="provincia" ng-model="codProvincia">
+                    <option value="" selected disabled></option>
+                    <option value="BL">Belluno</option>
+                    <option value="PD">Padova</option>
+                    <option value="RO">Rovigo</option>
+                    <option value="TV">Treviso</option>
+                    <option value="VE">Venezia</option>
+                    <option value="VR">Verona</option>
+                    <option value="VI">Vicenza</option>
+                </select>-->
+                <select name="provincia" id="provincia" ng-model="cliente.codiceProvincia">
+                    <option ng-repeat="provincia in province" value="{{provincia.codice}}">{{provincia.descrizione}}</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="sesso">Sesso</label>
+                <input type="radio" name="sesso" value="M" ng-model="cliente.sesso" >M</input>
+                <input type="radio" name="sesso" value="F" ng-model="cliente.sesso" />F</input>
+
+                <label for="nome">Codice fiscale</label>
+                <input type="text" name="codiceFiscale" ng-model="cliente.codiceFiscale"></input>
+
+            </p>
+
+            <button type="button" ng-click="submit()">Procedi</button>
+    </form>
