@@ -42,7 +42,7 @@
 
 
 	<footer>
-		<p>Copyright Â© 2018 Lynx Academy</p>
+		<p>Copyright © 2018 Lynx Academy</p>
 		<img width="30" src="./assets/icon/logo-hat-little.png" alt="Academy Bank" />
 	</footer>
 
@@ -54,34 +54,34 @@
 	app.config(function ($routeProvider) {
 			$routeProvider
 				.when("/", {
-					templateUrl: "/bank-academy/home.html"
+					templateUrl: "/bank-academy/view/home.html"
 				})
 				.when("/gestioneRicerche", {
-					templateUrl: "/bank-academy/gestioneRicerche.html",
+					templateUrl: "view/gestioneRicerche.html",
 					controller: "gestioneRicerche.controller"
 				})
 				.when("/gestioneRicercheRisultato", {
-					templateUrl: "gestioneRicercheRisultato.html",
+					templateUrl: "view/gestioneRicercheRisultato.html",
 					controller: "gestioneRicercheRisultato.controller"
 				})
 				.when("/gestioneRicercheCancella", {
-					templateUrl: "gestioneRicercheCancella.html",
+					templateUrl: "view/gestioneRicercheCancella.html",
 					controller: "gestioneRicercheCancella.controller"
 				})
 				.when("/inserimentoCliente", {
-					templateUrl: "inserimentoCliente.html",
+					templateUrl: "view/inserimentoCliente.html",
 					controller: "inserimentoCliente.controller"
 				})
 				.when("/inserimentoClienteConsiglio", {
-					templateUrl: "inserimentoClienteConsiglio.html",
+					templateUrl: "view/inserimentoClienteConsiglio.html",
 					controller: "inserimentoClienteConsiglio.controller"
 				})
 				.when("/inserimentoClienteSelezione", {
-					templateUrl: "inserimentoClienteSelezione.html",
+					templateUrl: "view/inserimentoClienteSelezione.html",
 					controller: "inserimentoClienteSelezione.controller"
 				})
 				.when("/inserimentoClienteConferma", {
-					templateUrl: "inserimentoClienteConferma.html",
+					templateUrl: "view/inserimentoClienteConferma.html",
 					controller: "inserimentoClienteConferma.controller"
 				})
 		})
@@ -97,5 +97,6 @@
 <script src="./script/controller/inserimentoClienteSelezione.controller.js"></script>
 <script src="./script/controller/inserimentoClienteConferma.controller.js"></script>
 <script src="./script/controller/inserimentoClienteConsiglio.controller.js"></script>
+<script src="./script/directive/emptyToNull.directive.js"></script>
 
 </html>
