@@ -1,0 +1,99 @@
+/*.col-xs-12{
+    margin-left: -14px;
+}
+
+.col-md-3{
+    margin-left: -32px;
+}*/
+
+button.btn.btn-success{
+    margin-top: 33px;
+}
+
+label.btn.btn-success{
+    height:49px;
+}
+
+fieldset{
+    width: 50%;
+    border-color: rgb(16, 143, 16);
+    margin: 0 auto;
+}
+
+legend{ 
+    color: rgb(12, 109, 12);
+    font-size: 150%;    
+}
+
+#btnCerca{
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+/* Style the label to display next to the inputs */
+/*label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}*/
+
+/* Floating column for labels: 25% width */
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  
+  /* Floating column for inputs: 75% width */
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+  
+  /* Clear floats after the columns */
+ /* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }*/
+
+  @media only screen and (max-width:800px) {
+    /* For tablets: */
+    #logo{
+        clear:both;
+    }
+
+    img{
+        height: auto;
+        width: 25%;
+    }
+  }
+  @media only screen and (max-width:500px) {
+    /* For mobile phones: */
+    *{
+      clear:both;
+      width: 100%;
+    }
+
+    img{
+        height: auto;
+        width: 25%;
+    }
+
+    label{
+        font-size: 1em;
+    }
+  }

@@ -1,0 +1,191 @@
+<fieldset>
+  <legend>
+    <b>Inserisci cliente</b>
+  </legend>
+  <!--Form-->
+  <!--<form #f='ngForm'>
+
+
+    <div class="row">
+      <div class="form-inline">-->
+
+
+  <!--Nome-->
+  <!--<div class="form-group">
+          <div class="col-auto">
+            <label for="name">Nome</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" placeholder="inserisci il nome" id="nome" name="nome" [(ngModel)]="cliente.nomeCliente" uppercase required>
+          </div>
+        </div>
+        <div class="form-group">-->
+  <!--Cognome-->
+  <!--<div class="col-auto">
+            <label for="cognome">Cognome</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" placeholder="inserisci il cognome" name="cognome" [(ngModel)]="cliente.cognomeCliente" uppercase required>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <br />-->
+  <!--CodiceFiscale-->
+  <!--<div class="row">
+      <div class="form-inline">
+        <div class="form-group">
+          <div class="col-auto">
+            <label for="codiceFiscale">Codice fiscale</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" placeholder="inserisci il codice fiscale" name="codiceFiscale" id="codiceFiscale" [(ngModel)]="cliente.codiceFiscale"
+              uppercase required>
+          </div>
+        </div>-->
+  <!--Provincia-->
+  <!-- <div class="form-group">
+          <div class="col-auto">
+            <label for="provincia">Provincia</label>
+          </div>
+          <div class="col-auto">
+            <select [(ngModel)]="cliente.codiceProvincia" name="provincia">
+              <option value=""></option>
+              <option *ngFor="let provincia of provinciaList" value={{provincia.citta}}>
+                {{provincia.citta}}.....({{provincia.descr}})
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>-->
+
+  <!--DataNascita-->
+  <!--<div class="row">
+      <div class="col-25">
+        <label for="dataNascita">Data nascita</label>
+      </div>
+      <div class="col-75">
+        <input type="date" id="dataNascita" [(ngModel)]="cliente.dataNascita" name="dataNascita" required>
+      </div>
+    </div>-->
+  <!--<br />
+    <div class="row">
+      <div class="form-inline">
+        <div class="form-group">
+          <div class="col-auto">
+            <label for="dataNascita">Data nascita</label>
+          </div>
+          <div class="col-xs-12 col-12 col-md-4 form-group">
+            <input type="text" [(ngModel)]="cliente.dataNascita" class="form-control" #dp="bsDatepicker" bsDatepicker [bsValue]="bsValue"
+              name="dataNascita" required>
+          </div>
+          <div class="col-xs-12 col-12 col-md-3 form-group">
+            <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen">
+              <img width="35px" height="35px" src="../../../../assets/icons/33650.png">
+            </button>
+          </div>
+        </div>-->
+  <!--Sesso-->
+  <!--<div class="form-group">
+          <div class="col-auto">
+            <label for="sesso">Sesso</label>
+          </div>
+          <br />
+          <div class="col-auto">
+            <div class="btn-group" btnRadioGroup [(ngModel)]="cliente.sesso" name="sesso">
+              <label class="btn btn-success" btnRadio="M" uncheckable tabindex="0" role="button">&emsp;M&emsp;</label>
+              <label class="btn btn-success" btnRadio="F" uncheckable tabindex="0" role="button">&emsp;F&emsp;</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
+  <!--<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel">
+  <label class="btn btn-success" [(ngModel)]="cliente.sesso" btnRadio="M"
+         tabindex="0" role="button">M</label>
+  <label class="btn btn-success" [(ngModel)]="cliente.sesso" btnRadio="F"
+         tabindex="0" role="button">F</label>
+</div>-->
+  <!--Button-->
+  <!--<br />-->
+  <!--<div class="row">
+      <div class="form-inline">
+        <div class="form-group">
+          <div class="col-3">
+          </div>
+          <div class="col-9">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-3">
+            
+          </div>
+          <div class="col-9">
+              
+          </div>
+        </div>
+      </div>
+    </div>-->
+  <!--<button type="button" (click)="conferma()" id="btnInserisci" [disabled]="f.invalid" class="btn btn-primary">Insert</button>
+  </form>-->
+
+  <form #f='ngForm'>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" placeholder="inserisci il nome" id="nome" name="nome" [(ngModel)]="cliente.nomeCliente"
+          uppercase required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cognome">Cognome</label>
+        <input type="text" class="form-control" placeholder="inserisci il cognome" name="cognome" [(ngModel)]="cliente.cognomeCliente"
+          uppercase required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="codiceFiscale">Codice fiscale</label>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="inserisci il codice fiscale" name="codiceFiscale" id="codiceFiscale"
+            [(ngModel)]="cliente.codiceFiscale" uppercase required>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="provincia">Provincia</label>
+        <select [(ngModel)]="cliente.codiceProvincia" name="provincia">
+          <option value=""></option>
+          <option *ngFor="let provincia of provinciaList" value={{provincia.citta}}>
+            {{provincia.citta}}.....({{provincia.descr}})
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="sesso">Sesso</label>
+        <br />
+        <div class="btn-group" btnRadioGroup [(ngModel)]="cliente.sesso" name="sesso">
+          <label class="btn btn-success" btnRadio="M" uncheckable tabindex="0" role="button">&emsp;M&emsp;</label>
+          <label class="btn btn-success" btnRadio="F" uncheckable tabindex="0" role="button">&emsp;F&emsp;</label>
+        </div>
+      </div>
+      <div class="form-group col-md-5">
+        <label for="dataNascita">Data Nascita</label>
+        <input type="text" [(ngModel)]="cliente.dataNascita" class="form-control" #dp="bsDatepicker" bsDatepicker [bsValue]="bsValue"
+          name="dataNascita" required>
+      </div>
+      <div class="col-md-1 mb-3 form-group">
+        <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen">
+          <img width="35px" height="35px" src="../../../../assets/icons/33650.png">
+        </button>
+      </div>
+    </div>
+
+    <button type="button" (click)="conferma()" id="btnInserisci" [disabled]="f.invalid" class="btn btn-primary">Insert</button>
+  </form>
+
+</fieldset>

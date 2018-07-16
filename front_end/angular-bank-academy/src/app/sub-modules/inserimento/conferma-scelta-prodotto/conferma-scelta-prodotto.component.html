@@ -1,0 +1,11 @@
+<fieldset id="prodottoSelect">
+  <legend>Seleziona il prodotto</legend>
+  <label>Prodotto</label>
+  <select name="nomeProdotto" [(ngModel)]="cliente.nomeProdotto" required>
+    <!--<option *ngFor="let prodotto of prodottiList" value={{prodotto.nomeProdotto}} selected="{{prodotto.descrizioneProdotto}} == {{cliente.descrizioneProdotto}}">-->
+        <option *ngFor="let prodotto of prodottiList" value={{prodotto.nomeProdotto}}>
+      {{prodotto.descrizioneProdotto}}
+    </option>
+  </select>
+  <button type="submit" (click)="conferma()" id="btnConfirm">OK</button>
+</fieldset>

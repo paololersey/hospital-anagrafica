@@ -1,0 +1,79 @@
+<div id="tabRic" *ngIf="ricercaEnabled">
+  <fieldset>
+    <legend class="info">
+      <b>Risultato</b>
+    </legend>
+    <!--<table style="width:100%">
+      <tr>
+        <th>Modifica</th>
+        <th>Cancella</th>
+        <th>Cognome</th>
+        <th>Nome</th>
+        <th>Data Nascita</th>
+        <th>Data Fine</th>
+        <th>Id Cliente</th>
+        <th>Codice Fiscale</th>
+        <th>Sesso</th>
+        <th>Codice Provincia</th>
+        <th>Nome Prodotto</th>
+        <th>Numero Conto Corrente</th>
+      </tr>
+      <tr *ngFor="let cliente of clienti where ">
+        <td>
+          <img src="../../../../assets\icons/save.png" width="35px" height="35px" id="img_ed" />
+        </td>
+        <td>
+          <img src="../../../..\assets/icons/trash.png" width="35px" height="35px" id="img_tr" (click)="elimina(cliente)" />
+        </td>
+        <td>{{cliente.nomeCliente}}</td>
+        <td>{{cliente.cognomeCliente}}</td>
+        <td>{{cliente.dataNascita | date}}</td>
+        <td>{{cliente.dataFine}}</td>
+        <td>{{cliente.idCliente}}</td>
+        <td>{{cliente.codiceFiscale}}</td>
+        <td>{{cliente.sesso}}</td>
+        <td>{{cliente.codiceProvincia}}</td>
+        <td>{{cliente.nomeProdotto}}</td>
+        <td>{{cliente.numeroContoCorrente}}</td>
+      </tr>
+    </table>-->
+<div class="classeTab">
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <th>Modifica</th>
+          <th>Cancella</th>
+          <th>Cognome</th>
+          <th>Nome</th>
+          <th>Data Nascita</th>
+          <th>Id Cliente</th>
+          <th>Codice Fiscale</th>
+          <th>Sesso</th>
+          <th>Codice Provincia</th>
+          <th>Nome Prodotto</th>
+          <th>Numero Conto Corrente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clienti where ">
+          <td class="warning">
+            <img src="../../../../assets\icons/save.png" width="35px" height="35px" id="img_ed" />
+          </td>
+          <td class="danger">
+            <img src="../../../..\assets/icons/trash.png" width="35px" height="35px" id="img_tr" (click)="elimina(cliente)" />
+          </td>
+          <td class="active">{{cliente.nomeCliente}}</td>
+          <td class="active">{{cliente.cognomeCliente}}</td>
+          <td class="info">{{cliente.dataNascita | date}}</td>
+          <td class="info">{{cliente.idCliente}}</td>
+          <td class="info">{{cliente.codiceFiscale}}</td>
+          <td class="info">{{cliente.sesso}}</td>
+          <td class="info">{{cliente.codiceProvincia}}</td>
+          <td class="info">{{cliente.nomeProdotto}}</td>
+          <td class="info">{{cliente.numeroContoCorrente}}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </fieldset>
+</div>

@@ -1,0 +1,64 @@
+fieldset{
+    width: 350px;
+    border-color: rgb(16, 143, 16);
+    margin: 0 auto;
+}
+
+p{
+    font-size: 17px;
+}
+
+legend{
+    color: rgb(12, 109, 12);
+    font-size: 150%;    
+}
+
+#btnYes{
+    background-color: rgb(57, 158, 60);
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#btnYes:hover{
+    background-color: rgb(35, 122, 38);
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#btnNo{
+    background-color: rgb(57, 158, 60);
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 25%;
+  
+}
+
+#btnNo:hover{
+    background-color: rgb(35, 122, 38);
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 25%;
+
+}

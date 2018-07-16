@@ -1,0 +1,81 @@
+/*a:link, a:visited {
+    background-color:green;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: lightgreen;
+}
+
+.menuitem {
+    padding: 8px;
+    margin-top: 7px;
+    border-bottom: 1px solid #f1f1f1;
+    background-color:#f1f1f1;text-align:center;padding:10px;margin-top:7px;font-size:12px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  .menu {
+    float: left;
+    width: 20%;
+    cursor: pointer;
+    
+  }*/
+  #nav{
+    float: left;
+    text-align: left;
+    width: 15%;
+    padding-bottom: 30%;
+    border-color: rgb(144, 146, 144);  
+
+    bottom:0px;
+}
+
+.list{
+    color: rgb(136, 139, 136);
+    font-size: 20px;
+    border-bottom: solid;
+    border-width: 1px;
+    padding-bottom: 10%;
+    border-color: rgb(116, 115, 115);
+}
+.list label{
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 10%;
+    cursor:pointer;
+}
+
+.list:hover{
+    background-color: rgb(115, 117, 115);
+    color: rgba(255, 253, 253, 0.856);
+    border: dotted;  
+    border-color: rgb(144, 146, 144);
+    cursor: pointer;
+}
+
+@media only screen and (max-width:800px) {
+    /* For tablets: */
+    #nav {
+      width: 80%;
+      padding: 0;
+      text-align: center;
+    }
+  }
+  @media only screen and (max-width:500px) {
+    /* For mobile phones: */
+    #nav{
+      width: 100%;
+      text-align: center;
+    }
+
+    label{
+        font-size: 1em;
+    }
+  }
