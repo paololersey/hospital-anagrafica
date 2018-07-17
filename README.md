@@ -13,7 +13,7 @@ The front-end will open at
     http:/localhost:4200
     
 
-In order to have the front-end working on Angularjs, simply go to:
+Alternatively, in order to have the front-end working on Angularjs, simply go to:
 
     http://localhost:8080/bank-academy/index.html
 
