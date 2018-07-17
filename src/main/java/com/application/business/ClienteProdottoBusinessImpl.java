@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import javax.ejb.Stateless;
@@ -70,13 +71,13 @@ public class ClienteProdottoBusinessImpl implements ClienteProdottoBusiness {
 			ProdottoBO prodottoBO = prodottoDao.getByNomeProdotto(clienteBO.getNomeProdotto());
 
 			if (clienteBO.getId() == null) {
-
+				Random r=new Random();
 				Set<ContoBO> contoBOList = new HashSet<>();
 				ContoBO contoBO = new ContoBO();
 
 				contoBO.setProdottoBO(prodottoBO);
 				contoBO.setDataApertura(new Date());
-				contoBO.setNumeroContoCorrente(CONTO_PREFIX + "2");
+				contoBO.setNumeroContoCorrente(CONTO_PREFIX +""+ r.nextInt());
 				contoBOList.add(contoBO);
 
 				clienteBO.addContoBO(contoBO);

@@ -88,7 +88,7 @@ export class SearchComponent implements OnInit {
       result => { this.prodottiList = result; },
       error => this.error = error);
 
-    this.provinciaService.getProvincia().subscribe(
+    this.provinciaService.getProvinceList().subscribe(
       result => { this.provinciaList = result; },
       error => this.error = error);
   }
@@ -99,8 +99,7 @@ export class SearchComponent implements OnInit {
     /*this.cliente.cognomeCliente = this.cliente.cognomeCliente.toUpperCase();
     this.cliente.codiceFiscale = this.cliente.codiceFiscale.toUpperCase();*/
     if (this.modelService.cliente == null) {
-      this.cliente.nomeProdotto = this.prodotto.nomeProdotto;
-      this.cliente.codiceProvincia = this.provincia.citta;
+      this.cliente.descProdotto = this.prodotto.nomeProdotto;
     }
     this.cambio.emit(this.cliente);
   }

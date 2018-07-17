@@ -31,8 +31,8 @@ export class SearchContainerComponent implements OnInit, OnChanges {
     console.log('onchange');
 
   }
-  getClientiList(cliente: Cliente) {
-    this.clienteService.getClienti(cliente).subscribe(
+  getClientiWithProdotto(cliente: Cliente) {
+    this.clienteService.getClientiWithProdotto(cliente).subscribe(
       result => { this.risultatoTabellaDaRestService = result; this.modelService.clientiList = this.risultatoTabellaDaRestService },
       error => this.error = error);
   }

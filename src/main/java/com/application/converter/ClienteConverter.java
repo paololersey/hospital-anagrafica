@@ -103,6 +103,7 @@ public class ClienteConverter {
 			ContoBO contoBO = new ArrayList<>(clienteBO.getContoBOList()).get(0);
 			ProdottoTO prodottoTO = prodottoConverter.convertBOtoTO(contoBO.getProdottoBO());
 			clienteTO.setNomeProdotto(prodottoTO.getNomeProdotto());
+			clienteTO.setNumContoCorrente(contoBO.getNumeroContoCorrente());
 		}
 
 		return clienteTO;

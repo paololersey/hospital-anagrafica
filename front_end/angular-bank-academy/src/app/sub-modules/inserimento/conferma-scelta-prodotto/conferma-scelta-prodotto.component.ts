@@ -34,7 +34,6 @@ export class ConfermaSceltaProdottoComponent implements OnInit {
     this.prodottoService.getProdotti().subscribe(
       result => { this.prodottiList = result; },
       error => this.error = error);
-    this.cliente.nomeProdotto = this.prodotto.nomeProdotto;
   }
 
   conferma() {

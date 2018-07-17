@@ -137,12 +137,12 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="name">Nome</label>
-        <input type="text" class="form-control" placeholder="inserisci il nome" id="nome" name="nome" [(ngModel)]="cliente.nomeCliente"
+        <input type="text" class="form-control" placeholder="inserisci il nome" id="nome" name="nome" [(ngModel)]="cliente.nome"
           uppercase required>
       </div>
       <div class="form-group col-md-6">
         <label for="cognome">Cognome</label>
-        <input type="text" class="form-control" placeholder="inserisci il cognome" name="cognome" [(ngModel)]="cliente.cognomeCliente"
+        <input type="text" class="form-control" placeholder="inserisci il cognome" name="cognome" [(ngModel)]="cliente.cognome"
           uppercase required>
       </div>
     </div>
@@ -158,8 +158,8 @@
         <label for="provincia">Provincia</label>
         <select [(ngModel)]="cliente.codiceProvincia" name="provincia">
           <option value=""></option>
-          <option *ngFor="let provincia of provinciaList" value={{provincia.citta}}>
-            {{provincia.citta}}.....({{provincia.descr}})
+          <option *ngFor="let provincia of provinciaList" value={{provincia.codice}}>
+            {{provincia.codice}}.....({{provincia.descrizione}})
           </option>
         </select>
       </div>
@@ -175,7 +175,7 @@
       </div>
       <div class="form-group col-md-5">
         <label for="dataNascita">Data Nascita</label>
-        <input type="text" [(ngModel)]="cliente.dataNascita" class="form-control" #dp="bsDatepicker" bsDatepicker [bsValue]="bsValue"
+        <input type="text" [(ngModel)]="cliente.dataNascita" class="form-control" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="gg-mm-aaaa" #dp="bsDatepicker" bsDatepicker [bsValue]="bsValue"
           name="dataNascita" required>
       </div>
       <div class="col-md-1 mb-3 form-group">

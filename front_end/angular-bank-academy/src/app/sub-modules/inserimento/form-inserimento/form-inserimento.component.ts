@@ -35,17 +35,17 @@ export class FormInserimentoComponent implements OnInit {
 
   ngOnInit() {
     this.cliente = new Cliente();
-    this.provinciaService.getProvincia().subscribe(
+    this.provinciaService.getProvinceList().subscribe(
       result => { this.provinciaList = result; },
       error => this.error = error);
   }
 
   conferma() {
-    this.cliente.nomeCliente=this.cliente.nomeCliente.toUpperCase();
-    this.cliente.cognomeCliente=this.cliente.cognomeCliente.toUpperCase();
+    this.cliente.nome=this.cliente.nome.toUpperCase();
+    this.cliente.cognome=this.cliente.cognome.toUpperCase();
     this.cliente.codiceFiscale=this.cliente.codiceFiscale.toUpperCase();
     this.modelService.cliente = this.cliente;
-    this.prodottoService.consiglioProdotto(this.cliente).subscribe(
+    this.prodottoService.getProdottoSuggestion(this.cliente).subscribe(
       result => {
         this.prodotto = result;
         this.modelService.prodotto = this.prodotto;

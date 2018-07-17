@@ -18,8 +18,8 @@ export class ProdottoService {
     );
   }
 
-  consiglioProdotto(cliente: Cliente): Observable<any> {
-    return this.http.post(environment.baseUrl + '/bank-academy/rest/prodotti/getProdottoConsiglio', cliente).pipe(
+  getProdottoSuggestion(cliente: Cliente): Observable<any> {
+    return this.http.post(environment.baseUrl + '/bank-academy/rest/prodotti/getProdottoSuggestion', cliente).pipe(
       catchError(this.handleError)
     );
   }

@@ -11,7 +11,7 @@ export class ProvinciaService {
 
   constructor(private http: HttpClient) { }
   
-  getProvincia(): Observable<any> {
+  getProvinceList(): Observable<any> {
     return this.http.get(environment.baseUrl + '/bank-academy/rest/province/getProvinceList').pipe(
       catchError(this.handleError)
     );

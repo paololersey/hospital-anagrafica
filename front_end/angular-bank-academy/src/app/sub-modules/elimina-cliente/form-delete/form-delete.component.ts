@@ -24,7 +24,7 @@ export class FormDeleteComponent implements OnInit {
 
   conferma() {
     this.modelService.cliente.dataFine = new Date();
-    this.clienteService.deleteCliente(this.cliente.idCliente).subscribe(
+    this.clienteService.deleteCliente(this.cliente.id).subscribe(
       result => { this.id = result; this.router.navigate(['/search']); },
       error => this.error = error);
   };

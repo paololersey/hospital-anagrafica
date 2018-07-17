@@ -1,7 +1,8 @@
 export class Provincia {
-    public citta: string;
-    public descr: string;
     public id: Number;
+    public codice: string;
+    public descrizione: string;
+
     
     constructor() { }
 }

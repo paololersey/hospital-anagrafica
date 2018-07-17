@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.application.client.TO.ProdottoTO;
+import com.application.exception.ConverterException;
 
 public class ProdottoConverterTest {
 
@@ -23,7 +24,7 @@ public class ProdottoConverterTest {
 	}
 
 	@Test
-	public void testConvertTOtoBO() {
+	public void testConvertTOtoBO() throws ConverterException {
 		ProdottoTO prodottoTO = new ProdottoTO();
 		prodottoTO.setId(100L);
 		prodottoTO.setNomeProdotto("NOME_PRODOTTO");

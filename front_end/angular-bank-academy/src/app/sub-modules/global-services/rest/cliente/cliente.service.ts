@@ -11,20 +11,20 @@ import { Cliente } from './../../model/cliente';
 export class ClienteService {
   constructor(private http: HttpClient) { }
 
-  getClienti(cliente: Cliente): Observable<any> {
-    return this.http.post(environment.baseUrl + '/bank-academy/rest/clienti/getClientiList', cliente).pipe(
+  getClientiWithProdotto(cliente: Cliente): Observable<any> {
+    return this.http.post(environment.baseUrl + '/bank-academy/rest/clienti/getClientiWithProdotto', cliente).pipe(
       catchError(this.handleError)
     );
   }
 
   deleteCliente(id: Number): Observable<any> {
-    return this.http.delete(environment.baseUrl + '/bank-academy/rest/clienti/deleteCliente/'+ id).pipe(
+    return this.http.delete(environment.baseUrl + '/bank-academy/rest/clienti/deleteCliente/' + id).pipe(
       catchError(this.handleError)
     );
   }
 
-  saveCliente(cliente: Cliente): Observable<any> {
-    return this.http.post(environment.baseUrl + '/bank-academy/rest/clienti/saveCliente', cliente).pipe(
+  insertEditCliente(cliente: Cliente): Observable<any> {
+    return this.http.put(environment.baseUrl + '/bank-academy/rest/clienti/insertEditCliente', cliente).pipe(
       catchError(this.handleError)
     );
   }

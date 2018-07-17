@@ -14,13 +14,14 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 	private String codiceProvincia;
 	private String codiceFiscale;
 	private String nomeProdotto;
-
+	private String numContoCorrente;
+	
 	public ClienteWithProdottoTO() {
 
 	};
 
 	public ClienteWithProdottoTO(Long id, String nome, String cognome, Date dataNascita, String sesso, String codiceProvincia,
-			String codiceFiscale, String nomeProdotto) {
+			String codiceFiscale, String nomeProdotto, String numContoCorrente) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -30,6 +31,7 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 		this.codiceProvincia = codiceProvincia;
 		this.codiceFiscale = codiceFiscale;
 		this.nomeProdotto = nomeProdotto;
+		this.numContoCorrente = numContoCorrente;
 	}
 	
 
@@ -97,11 +99,13 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 		this.codiceFiscale = codiceFiscale;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "ClienteWithProdottoTO [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", dataNascita="
 				+ dataNascita + ", sesso=" + sesso + ", codiceProvincia=" + codiceProvincia + ", codiceFiscale="
-				+ codiceFiscale + ", nomeProdotto=" + nomeProdotto + "]";
+				+ codiceFiscale + ", nomeProdotto=" + nomeProdotto + ", numContoCorrente=" + numContoCorrente + "]";
 	}
 
 	@Override
@@ -153,7 +157,20 @@ public class ClienteWithProdottoTO implements java.io.Serializable {
 				return false;
 		} else if (!sesso.equals(other.sesso))
 			return false;
+		if (numContoCorrente == null) {
+			if (other.numContoCorrente != null)
+				return false;
+		} else if (!numContoCorrente.equals(other.numContoCorrente))
+			return false;
 		return true;
+	}
+
+	public String getNumContoCorrente() {
+		return numContoCorrente;
+	}
+
+	public void setNumContoCorrente(String numContoCorrente) {
+		this.numContoCorrente = numContoCorrente;
 	}
 
 	

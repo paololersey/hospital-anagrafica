@@ -1,14 +1,15 @@
 export class Cliente {
-    public idCliente: Number;
-    public nomeCliente: string;
-    public cognomeCliente: string;
+    public id: Number;
+    public nome: string;
+    public cognome: string;
     public dataNascita: Date;
     public dataFine: Date;
     public codiceFiscale: string;
     public sesso: string;
     public codiceProvincia: string;
     public nomeProdotto: string;
-    public numeroContoCorrente: string;
+    public descProdotto: string;
+    public numContoCorrente: string;
 
     constructor() { }
 
