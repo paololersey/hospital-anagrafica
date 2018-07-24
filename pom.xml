@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.application.common</groupId>
-	<artifactId>BankingAcademy</artifactId>
+	<artifactId>Hospital - anagrafica clienti</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Bank academy app</name>
+	<name>Hospital anagrafica clienti</name>
 	<url>http://maven.apache.org</url>
 
 	<repositories>
@@ -102,7 +102,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>bank-academy</finalName>
+		<finalName>hospital</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
